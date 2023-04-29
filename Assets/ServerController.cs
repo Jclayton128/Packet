@@ -7,22 +7,74 @@ public class ServerController : MonoBehaviour
 {
     public static ServerController Instance;
 
+    /// <summary>
+    /// First Arg: previous SLH, second Arg: new SLH
+    /// </summary>
+    public Action<SelectionHandler, SelectionHandler> NodeBridgeActivated;
+
     //state
     List<ServerLoadHandler> _servers = new List<ServerLoadHandler>();
     public List<ServerLoadHandler> Servers => _servers;
 
+    public SelectionHandler _previousActivatedNode;
+    public SelectionHandler _currentActivatedNode;
+
     private void Awake()
     {
+        _previousActivatedNode = null;
+        _currentActivatedNode = null;
         Instance = this;
-        FindAllServers();
+        FindAndConnectAllServers();
     }
 
-    private void FindAllServers()
+    private void Start()
+    {
+        ConnectToAllNodes();
+    }
+
+    private void FindAndConnectAllServers()
     {
         GameObject[] servers = GameObject.FindGameObjectsWithTag("Server");
         foreach (var server in servers)
         {
-            _servers.Add(server.GetComponent<ServerLoadHandler>());
+            var slh = server.GetComponent<ServerLoadHandler>();
+            _servers.Add(slh);
+        }
+    }
+
+    private void ConnectToAllNodes()
+    {
+        foreach (var terminal in TerminalController.Instance.Terminals)
+        {
+            SelectionHandler sh = terminal.GetComponent<SelectionHandler>();
+            sh.NodeActivated += HandleActivatedNode;
+        }
+        foreach (var server in ServerController.Instance.Servers)
+        {
+            SelectionHandler sh = server.GetComponent<SelectionHandler>();
+            sh.NodeActivated += HandleActivatedNode;
+        }
+    }
+
+    private void HandleActivatedNode(SelectionHandler newlyActivatedNode)
+    {
+        if (_currentActivatedNode == null)
+        {
+            _currentActivatedNode = newlyActivatedNode;
+        }
+        else
+        {
+            _previousActivatedNode = _currentActivatedNode;
+            _currentActivatedNode = newlyActivatedNode;
+            NodeBridgeActivated?.Invoke(_previousActivatedNode, _currentActivatedNode);
+        }
+    }
+
+    public void ResetivateAllServers()
+    {
+        foreach (var server in _servers)
+        {
+            server.GetComponent<SelectionHandler>().StartResetivate();
         }
     }
 

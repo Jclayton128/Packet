@@ -84,10 +84,9 @@ public class LinkHandler : MonoBehaviour
         _neighborTerminals.Clear();
     }
 
+
     public void Activate()
     {
-        //TODO change links to a different color than just select to show only choices
-
         foreach (var neighbor in _neighborServers)
         {
             var sh = neighbor.GetComponent<SelectionHandler>();

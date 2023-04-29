@@ -16,7 +16,7 @@ public class LinkController : MonoBehaviour
     //state
     List<LinkHandler> _servers = new List<LinkHandler>();
     List<LinkHandler> _terminals = new List<LinkHandler> ();
-    List<LineRenderer> _links = new List<LineRenderer>();
+    List<LinkConnectionHandler> _links = new List<LinkConnectionHandler>();
 
     private void Awake()
     {
@@ -28,8 +28,10 @@ public class LinkController : MonoBehaviour
         FindAllServers();
         FindAllTerminals();
         CreateAllLinks();
+        ServerController.Instance.NodeBridgeActivated += HandleServerConnection;
     }
 
+  
     private void FindAllServers()
     {
         foreach (var server in ServerController.Instance.Servers)
@@ -97,10 +99,15 @@ public class LinkController : MonoBehaviour
     private void CreateNewLink(LinkHandler testServer, LinkHandler pn)
     {
         LineRenderer newLink = Instantiate(_linePrefab);
-        _links.Add(newLink);
+
         newLink.positionCount = 2;
         newLink.SetPosition(0, testServer.transform.position);
         newLink.SetPosition(1, pn.transform.position);
+
+        LinkConnectionHandler lch = newLink.GetComponent<LinkConnectionHandler>();
+        lch.SetOneNode(testServer);
+        lch.SetOneNode(pn);
+        _links.Add(lch);
 
         testServer.AddLink(newLink.GetComponent<LinkVisualHandler>());
         pn.AddLink(newLink.GetComponent<LinkVisualHandler>());
@@ -121,4 +128,28 @@ public class LinkController : MonoBehaviour
         }
         CreateAllLinks();
     }
+
+    private void HandleServerConnection(SelectionHandler arg1, SelectionHandler arg2)
+    {
+        foreach (var link in _links)
+        {
+            if (link.CheckConnection(arg1.GetComponent<LinkHandler>(),
+                arg2.GetComponent<LinkHandler>()))
+            {
+                link.ActivateLink();
+            }
+            
+
+        }
+    }
+
+    public void ResetivateAllLinks()
+    {
+        foreach (var link in _links)
+        {
+            link.ResetivateLink();
+        }
+    }
+
+
 }

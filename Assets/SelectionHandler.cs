@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SelectionHandler : MonoBehaviour
 {
+    public Action<SelectionHandler> NodeActivated;
+
     //state
     public bool CanBeSelected;// { get; private set; }
     bool _isSelected;
@@ -61,6 +63,9 @@ public class SelectionHandler : MonoBehaviour
     {
         HasBeenPreviouslyActivated = false;
         IsTargetNode = false;
+
+        //TODO go through all links and Resetivate them.
+
         StopActivation();
     }
 
@@ -88,11 +93,10 @@ public class SelectionHandler : MonoBehaviour
         IsActivated = true;
         CanBeSelected = false;
         HasBeenPreviouslyActivated = true;
-        BroadcastMessage("Activate");
-        //Visually depict that now activated
-        //Tell neighbors to all become selectable and not activated
 
-        //GetComponent<ServerLoadHandler>()?.ImposeLoad();
+        BroadcastMessage("Activate");
+        NodeActivated?.Invoke(this);
+
     }
 
     private void OnMouseExit()

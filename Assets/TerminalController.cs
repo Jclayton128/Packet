@@ -54,4 +54,12 @@ public class TerminalController : MonoBehaviour
             goal.GetComponent<SelectionHandler>().SetAsTargetNode();
         }
     }
+
+    public void ResetivateAllTerminals()
+    {
+        foreach (var terminal in _terminals)
+        {
+            terminal.GetComponent<SelectionHandler>().StartResetivate();
+        }
+    }
 }

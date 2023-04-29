@@ -24,6 +24,7 @@ public class ServerVisualHandler : VisualHandler
 
     public override void Select()
     {
+        
         _selectionSprite.color = ColorController.Instance.SelectedNode;
     }
 
@@ -41,6 +42,7 @@ public class ServerVisualHandler : VisualHandler
 
     public override void Selectable()
     {
+
         _selectionSprite.color = ColorController.Instance.SelectableNode;
     }
 

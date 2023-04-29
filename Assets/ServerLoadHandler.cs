@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ServerLoadHandler : MonoBehaviour
 {
+    public Action<ServerLoadHandler> ServerActivated;
     public enum LoadStatus { NoLoad, Low, Mid, High, Broken}
 
     ServerVisualHandler _svh;
@@ -81,9 +82,10 @@ public class ServerLoadHandler : MonoBehaviour
         }
     }
 
-    [ContextMenu("Impose Load")]
-    public void ImposeLoad()
+
+    public void Activate()
     {
+        ServerActivated?.Invoke(this);
         _currentLoad++;
         _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
         PushVisuals();
