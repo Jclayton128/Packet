@@ -109,5 +109,18 @@ public class TerminalController : MonoBehaviour
         _targetTerminal.SetAsTargetNode();
     }
 
+    public void SetStartTutorialTerminalAsGreen()
+    {
+        _tutorialStartTerminal.GetComponent<TerminalVisualHandler>().SetAsStartTerminal();
+        
+    }
+
+    public void SetTargetTutorialTerminalAsBlue()
+    {
+        _tutorialTargetTerminal.GetComponent<TerminalVisualHandler>().SetAsEndTerminal();
+
+    }
+
+
     #endregion
 }

@@ -21,6 +21,19 @@ public class PacketUIC : MonoBehaviour
         _packetPanel.ShowHide(false);
     }
 
+    public void ShowHideTimer(bool shouldShow)
+    {
+        _timerArc.enabled = shouldShow;
+    }
+    public void ShowHideValue(bool shouldShow)
+    {
+        _packetValueTMP.enabled = shouldShow;
+    }
+    public void ShowHideEncryption(bool shouldShow)
+    {
+        _encryptionStatus.enabled = shouldShow;
+    }
+
     public void SetEncryptionStatus(bool isEncrypted)
     {
         _encryptionStatus.color = ColorController.Instance.Encryption;

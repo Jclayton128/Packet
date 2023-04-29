@@ -94,7 +94,7 @@ public class TerminalVisualHandler : VisualHandler
 
     public void SetAsStartTerminal()
     {
-        _base.color = ColorController.Instance.WarmNode;
+        _base.color = ColorController.Instance.SelectedNode;
     }
 
     public void SetAsEndTerminal()

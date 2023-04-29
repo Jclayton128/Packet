@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e33c6def6514af2458fe12f175310123, type: 3}
-  m_Name: Tut_0
+  m_Name: Tut_7.1
   m_EditorClassIdentifier: 
   _sendingImage: {fileID: 21300000, guid: 9d375c43b4b5ced4ab19e55bd6aaffa0, type: 3}
-  _message: You are a network AI. You deliver packets for green terminals.
-  _hint: Click Here To Continue
-  _stepToAdvance: 2
+  _message: Collected resources can eventually be spent.
+  _hint: Deliver Another Packet
+  _stepToAdvance: 0
   _invokesTutorialPair: 0
-  _specialThing: 4
+  _specialThing: 2

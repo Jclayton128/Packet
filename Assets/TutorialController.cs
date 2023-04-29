@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,14 +39,6 @@ public class TutorialController : MonoBehaviour
     public void StartTutorial()
     {
         _isInTutorialPair = true;
-        //_currentTutorialStep++;
-        //_currentPacketMessage = _tutorialMessages[_currentTutorialStep];
-        //_currentStepToAdvance = _currentPacketMessage.stepToAdvance;
-        //FadeController.Instance.IncrementFadeInPhase();
-        //UIController.Instance.Message.DisplayMessage(
-        //    _currentPacketMessage.Message,
-        //    _currentPacketMessage.SendingImage,
-        //    _currentPacketMessage.Hint);
         AdvanceTutorial();
     }
 
@@ -65,10 +58,45 @@ public class TutorialController : MonoBehaviour
                 _currentPacketMessage.Message,
                 _currentPacketMessage.SendingImage,
                 _currentPacketMessage.Hint);
+
+            ProcessSpecialThings(_currentPacketMessage.SpecialThing);
         }
         else
         {
             Debug.Log("Tut complete");
+        }
+    }
+
+    private void ProcessSpecialThings(PacketMessage.SpecialThings currentPacketMessage)
+    {
+        switch (currentPacketMessage)
+        {
+            case PacketMessage.SpecialThings.None:
+                break;
+
+            case PacketMessage.SpecialThings.ShowTimer:
+                //fragile! must be called before other packet panel showings
+                UIController.Instance.Packet.ShowPacketPanel();                
+                UIController.Instance.Packet.ShowHideTimer(true);
+                UIController.Instance.Packet.ShowHideValue(false);
+                UIController.Instance.Packet.ShowHideEncryption(false);
+                break;
+
+            case PacketMessage.SpecialThings.ShowValue:
+                UIController.Instance.Packet.ShowHideValue(true);
+                break;
+
+            case PacketMessage.SpecialThings.ShowEncryption:
+                UIController.Instance.Packet.ShowHideEncryption(true);
+                break;
+
+            case PacketMessage.SpecialThings.SetupStartTutorialTerminals:
+                TerminalController.Instance.SetStartTutorialTerminalAsGreen();
+                break;
+
+            case PacketMessage.SpecialThings.SetupTargetTutorialTerminals:
+                TerminalController.Instance.SetTargetTutorialTerminalAsBlue();
+                break;
         }
     }
 

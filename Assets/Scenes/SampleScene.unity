@@ -1216,6 +1216,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bd8a9b2d8084ee4f97a35569ccc72b0, type: 2}
   - {fileID: 11400000, guid: 72cb5745f4598c54db1458c711d009dd, type: 2}
   - {fileID: 11400000, guid: b7c3bbc5c7894b44d92dde5c54a13ab5, type: 2}
+  - {fileID: 11400000, guid: 3bfa59833ebe6154099a3ab08126ffde, type: 2}
+  - {fileID: 11400000, guid: 1a1ffa9b25aee734480f34664f6531f5, type: 2}
+  - {fileID: 11400000, guid: c78e2ca5cc638e84487007703a275131, type: 2}
+  - {fileID: 11400000, guid: 8fcc08be7ea805243a6357578ea41f6b, type: 2}
+  - {fileID: 11400000, guid: 1f5bf8040adfd5649b87dd363fa432b2, type: 2}
+  - {fileID: 11400000, guid: 4a9423a19ab3b8f4f9d5ecb10c0d7fd6, type: 2}
+  - {fileID: 11400000, guid: 191e6a857d5f9e542bf5f559beea1ee2, type: 2}
+  - {fileID: 11400000, guid: eb3363a1c28eb064a80f623aebbb4e32, type: 2}
+  _currentPacketMessage: {fileID: 0}
+  _currentStepToAdvance: 0
   _isInTutorialPair: 0
 --- !u!1001 &1393350467
 PrefabInstance:

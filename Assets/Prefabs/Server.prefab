@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingMaxLoad: 2
-  _timeRequiredToHealLoadDamageUnit: 99
+  _timeRequiredToHealLoadDamageUnit: 1
   _startEncryptionStatus: 0
   IsBroken: 0
 --- !u!114 &835387839709736100
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89875e3bcf21ef4fb5673f64798f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isTutorialServer: 0
   CanBeSelected: 0
   IsActivated: 0
   HasBeenPreviouslyActivated: 0
@@ -235,8 +236,6 @@ MonoBehaviour:
   _minDelay: 0.25
   _maxDelay: 1
   Phase: 5
-  _spriteRenderers:
-  - {fileID: 2136486817627740387}
 --- !u!1 &2136486816420710859
 GameObject:
   m_ObjectHideFlags: 0
