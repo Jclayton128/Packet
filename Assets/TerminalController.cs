@@ -6,14 +6,18 @@ using UnityEngine;
 public class TerminalController : MonoBehaviour
 {
     public static TerminalController Instance;
+    public Action TargetTerminalActivated;
 
     //state
     List<TerminalLoadHandler> _terminals = new List<TerminalLoadHandler>();
     public List<TerminalLoadHandler> Terminals => _terminals;
 
+    SelectionHandler _targetTerminal;
+
     private void Awake()
     {
         Instance = this;
+        _targetTerminal = null;
         FindAllTerminals();
     }
 
@@ -23,12 +27,23 @@ public class TerminalController : MonoBehaviour
         foreach (var terminal in terminals)
         {
             _terminals.Add(terminal.GetComponent<TerminalLoadHandler>());
+            terminal.GetComponent<SelectionHandler>().NodeActivated += HandleTerminalActivated;
+        }
+    }
+
+    private void HandleTerminalActivated(SelectionHandler obj)
+    {
+        if (obj == _targetTerminal)
+        {
+            Debug.Log("success!");
+            PathController.Instance.CreateNewPathProblem();
         }
     }
 
     public void CreateRandomStartGoalPair()
     {
         Debug.Log("Creating Start Goal Pair");
+        
         foreach (var term in _terminals)
         {
             term.GetComponent<SelectionHandler>().StartResetivate();
@@ -51,9 +66,12 @@ public class TerminalController : MonoBehaviour
 
         if (goal != null)
         {
-            goal.GetComponent<SelectionHandler>().SetAsTargetNode();
+            SelectionHandler sh = goal.GetComponent<SelectionHandler>();
+            sh.SetAsTargetNode();
+            _targetTerminal = sh;
         }
     }
+
 
     public void ResetivateAllTerminals()
     {
