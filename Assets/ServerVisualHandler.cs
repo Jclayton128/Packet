@@ -3,26 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ServerVisualHandler : VisualHandler
-{    
+{
+    SelectionHandler _sh;
+
     [SerializeField] SpriteRenderer _baseSprite = null;
     [SerializeField] SpriteRenderer _encryption = null;
     [SerializeField] SpriteRenderer _selectionSprite = null;
     [SerializeField] SpriteRenderer[] _loadSprites = null;
 
+    private void Awake()
+    {
+        _sh = GetComponent<SelectionHandler>();
+    }
+
     private void Start()
     {
         Deselect();
+        Resetivate();
     }
 
     public override void Select()
     {
-        _selectionSprite.color = ColorController.Instance.Selection;
+        _selectionSprite.color = ColorController.Instance.SelectedNode;
     }
 
     public override void Deselect()
     {
-        _selectionSprite.color = Color.clear;
+        if (_sh.CanBeSelected)
+        {
+            _selectionSprite.color = ColorController.Instance.SelectableNode;
+        }
+        else
+        {
+            _selectionSprite.color = Color.clear;
+        }
     }
+
+    public override void Selectable()
+    {
+        _selectionSprite.color = ColorController.Instance.SelectableNode;
+    }
+
+    public override void Activate()
+    {
+        _baseSprite.color = ColorController.Instance.SelectedNode;
+    }
+
+    public override void Deactivate()
+    {
+        if (_sh.HasBeenPreviouslyActivated)
+        {
+            _baseSprite.color = ColorController.Instance.WarmNode;
+        }
+        else
+        {
+            _baseSprite.color = ColorController.Instance.ColdNode;
+        }
+
+    }
+
+    public override void Resetivate()
+    {
+        _baseSprite.color = ColorController.Instance.ColdNode;
+    }
+
 
     public void DepictMaxLoad(int maxCount)
     {
@@ -83,4 +127,5 @@ public class ServerVisualHandler : VisualHandler
         }
 
     }
+
 }

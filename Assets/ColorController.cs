@@ -8,11 +8,7 @@ public class ColorController : MonoBehaviour
 
 
 
-    //settings
-    [SerializeField] Color _selection = Color.white;
-    public Color Selection => _selection;
-
-
+    [Header("Load Dots")]
     [SerializeField] Color _unloadedColor = Color.gray;
     public Color UnloadedColor => _unloadedColor;
 
@@ -28,21 +24,35 @@ public class ColorController : MonoBehaviour
     [SerializeField] Color _loadedColor_High = Color.red;
     public Color LoadedColor_High => _loadedColor_High;
 
-
+    [Header("Links")]
     [SerializeField] Color _coldLink = Color.gray;
     public Color ColdLink => _coldLink;
 
+    [SerializeField] Color _warmLink = Color.gray;
+    public Color WarmLink => _warmLink;
 
-    [SerializeField] Color _coldTerminal = Color.gray;
-    public Color ColdTerminal => _coldTerminal;
-
-
-    [SerializeField] Color _startTerminal = Color.blue;
-    public Color StartTerminal => _startTerminal;
+    [SerializeField] Color _selectedLink = Color.green;
+    public Color SelectedLink => _selectedLink;
 
 
-    [SerializeField] Color _endTerminal = Color.green;
-    public Color EndTerminal => _endTerminal;
+    [Header("Nodes")]
+    [SerializeField] Color _coldNode = Color.gray;
+    public Color ColdNode => _coldNode;
+
+
+    [SerializeField] Color _warmNode = Color.blue;
+    public Color WarmNode => _warmNode;
+    
+
+    [SerializeField] Color _selectedNode = Color.white;
+    public Color SelectedNode => _selectedNode;
+
+    [SerializeField] Color _selectableNode = Color.white;
+    public Color SelectableNode => _selectableNode;
+
+
+    [SerializeField] Color _targetTerminal = Color.green;
+    public Color TargetTerminal => _targetTerminal;
 
 
     [SerializeField] Color _encryption = Color.magenta;

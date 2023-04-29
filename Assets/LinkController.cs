@@ -63,9 +63,11 @@ public class LinkController : MonoBehaviour
             dist = (server.transform.position - terminal.transform.position).magnitude;
             if (dist < _linkBridgeDistance)
             {
-                bool isNewConnection = server.CheckConnectWithNeighborTerminal(terminal);
-  
-                if (!isNewConnection)
+                bool isNewConnection_1 = server.CheckConnectWithNeighborTerminal(terminal);
+
+                bool isNewConnection_2 = terminal.CheckConnectWithNeighborServer(server);
+
+                if (!isNewConnection_1 && !isNewConnection_2)
                 {
                     CreateNewLink(server, terminal);
                 }
@@ -103,6 +105,7 @@ public class LinkController : MonoBehaviour
         testServer.AddLink(newLink.GetComponent<LinkVisualHandler>());
         pn.AddLink(newLink.GetComponent<LinkVisualHandler>());
     }
+
 
     [ContextMenu("Recheck Links")]
     public void RecheckLinks_Debug()

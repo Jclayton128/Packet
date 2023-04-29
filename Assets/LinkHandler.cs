@@ -8,8 +8,12 @@ public class LinkHandler : MonoBehaviour
     public List<LinkHandler> _neighborTerminals = new List<LinkHandler>();
     public List<LinkVisualHandler> _links = new List<LinkVisualHandler>();
 
+    //state
+    VisualHandler _vh;
+
     private void Awake()
     {
+        _vh = GetComponent<VisualHandler>();    
         _neighborServers.Clear();
         _neighborTerminals.Clear();
     }
@@ -22,7 +26,7 @@ public class LinkHandler : MonoBehaviour
     /// <returns></returns>
     public bool CheckConnectWithNeighborServer(LinkHandler newNeighbor)
     {
-        if (!_neighborServers.Contains(newNeighbor))
+        if (newNeighbor != this && !_neighborServers.Contains(newNeighbor))
         {
             _neighborServers.Add(newNeighbor);
             return false;
@@ -32,7 +36,7 @@ public class LinkHandler : MonoBehaviour
 
     public bool CheckConnectWithNeighborTerminal(LinkHandler newNeighbor)
     {
-        if (!_neighborTerminals.Contains(newNeighbor))
+        if (newNeighbor != this && !_neighborTerminals.Contains(newNeighbor))
         {
             _neighborTerminals.Add(newNeighbor);
             return false;
@@ -79,4 +83,45 @@ public class LinkHandler : MonoBehaviour
         _neighborServers.Clear();
         _neighborTerminals.Clear();
     }
+
+    public void Activate()
+    {
+        //TODO change links to a different color than just select to show only choices
+
+        foreach (var neighbor in _neighborServers)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.StopActivation(); //if I am activated, all neighbors must be deactivated
+        }
+        foreach (var neighbor in _neighborTerminals)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.StopActivation();
+        }
+
+        foreach (var neighbor in _neighborServers)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.ToggleSelectability(true); //if I am activated, all neighbors  become selectable
+        }
+        foreach (var neighbor in _neighborTerminals)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.ToggleSelectability(true);
+        }
+    }
+
+    public void Deactivate()
+    {
+        //if (GetComponent<SelectionHandler>().IsActivated) return;
+        foreach (var neighbor in _neighborServers)
+        {
+            neighbor.GetComponent<SelectionHandler>().ToggleSelectability(false);
+        }
+        foreach (var neighbor in _neighborTerminals)
+        {
+            neighbor.GetComponent<SelectionHandler>().ToggleSelectability(false);
+        }
+    }
+
 }
