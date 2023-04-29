@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3709639111529397454}
   - component: {fileID: 3709639111529397455}
+  - component: {fileID: 540063480998185850}
+  - component: {fileID: 4117684721513657191}
   m_Layer: 0
   m_Name: Terminal
   m_TagString: Untagged
@@ -132,6 +134,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _base: {fileID: 3709639112829181533}
   _encryption: {fileID: 3709639111283091452}
+--- !u!114 &540063480998185850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709639111529397448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df29afd745eb844e921fd18e8bff555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4117684721513657191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709639111529397448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4507dc4fdb0a5449ae4568b8d23e6a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _neighborServers: []
+  _neighborTerminals: []
 --- !u!1 &3709639112829181535
 GameObject:
   m_ObjectHideFlags: 0
