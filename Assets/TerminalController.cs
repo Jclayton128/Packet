@@ -37,7 +37,7 @@ public class TerminalController : MonoBehaviour
     {
         if (obj == _targetTerminal)
         {
-            Debug.Log("success!");
+            //Debug.Log("success!");
             PathController.Instance.CreateNewPathProblem();
         }
     }

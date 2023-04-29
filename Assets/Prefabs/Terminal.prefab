@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 3896345635748317030}
   m_Layer: 0
   m_Name: Terminal
-  m_TagString: Untagged
+  m_TagString: Terminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _neighborServers: []
   _neighborTerminals: []
+  _links: []
 --- !u!114 &1990549910475919969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89875e3bcf21ef4fb5673f64798f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBeSelected: 0
+  IsActivated: 0
+  HasBeenPreviouslyActivated: 0
+  IsTargetNode: 0
 --- !u!60 &3896345635748317030
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -285,10 +290,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.006639302, y: 0.64147973}
-      - {x: -0.6522898, y: 0.0036108494}
-      - {x: 0.003530264, y: -0.65631384}
-      - {x: 0.6456504, y: 0.0036110282}
+    - - {x: 0.0028650165, y: 0.8220589}
+      - {x: -0.8518776, y: 0.0036108494}
+      - {x: -0.005973816, y: -0.8273892}
+      - {x: 0.8737503, y: 0.022619188}
 --- !u!1 &3709639112829181535
 GameObject:
   m_ObjectHideFlags: 0

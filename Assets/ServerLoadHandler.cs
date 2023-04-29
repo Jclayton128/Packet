@@ -77,7 +77,7 @@ public class ServerLoadHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("Server Break!");
+            //Debug.Log("Server Break!");
             return LoadStatus.Broken;
         }
     }
