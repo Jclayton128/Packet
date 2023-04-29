@@ -183,9 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f0a91b7ec1289459837a75c88e7e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingMaxLoad: 6
-  _timeRequiredToHealLoadDamageUnit: 5
+  _startingMaxLoad: 2
+  _timeRequiredToHealLoadDamageUnit: 99
   _startEncryptionStatus: 0
+  IsBroken: 0
 --- !u!114 &835387839709736100
 MonoBehaviour:
   m_ObjectHideFlags: 0

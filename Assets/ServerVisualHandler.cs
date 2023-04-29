@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServerVisualHandler : VisualHandler
 {
     SelectionHandler _sh;
+    ServerLoadHandler _slh;
 
     [SerializeField] SpriteRenderer _baseSprite = null;
     [SerializeField] SpriteRenderer _encryption = null;
@@ -13,6 +14,7 @@ public class ServerVisualHandler : VisualHandler
 
     private void Awake()
     {
+        _slh = GetComponent<ServerLoadHandler>();
         _sh = GetComponent<SelectionHandler>();
     }
 
@@ -48,12 +50,24 @@ public class ServerVisualHandler : VisualHandler
 
     public override void Activate()
     {
-        _baseSprite.color = ColorController.Instance.SelectedNode;
+        if (!_slh.IsBroken)
+        {
+            _baseSprite.color = ColorController.Instance.SelectedNode;
+        }
+        else
+        {
+            _baseSprite.color = ColorController.Instance.BrokenNode;
+        }
+
     }
 
     public override void Deactivate()
     {
-        if (_sh.HasBeenPreviouslyActivated)
+        if (_slh.IsBroken)
+        {
+            DepictBrokenStatus();
+        }
+        else if (_sh.HasBeenPreviouslyActivated)
         {
             _baseSprite.color = ColorController.Instance.WarmNode;
         }
@@ -66,7 +80,15 @@ public class ServerVisualHandler : VisualHandler
 
     public override void Resetivate()
     {
-        _baseSprite.color = ColorController.Instance.ColdNode;
+        if (_slh.IsBroken)
+        {
+            _baseSprite.color = ColorController.Instance.BrokenNode;
+        }
+        else
+        {
+            _baseSprite.color = ColorController.Instance.ColdNode;
+        }
+
     }
 
 

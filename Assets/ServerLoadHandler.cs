@@ -21,7 +21,7 @@ public class ServerLoadHandler : MonoBehaviour
     int _currentLoad;
     bool _currentEncryptionStatus;
     LoadStatus _currentLoadStatus;
-    bool _isBroken;
+    public bool IsBroken;//{ get; private set; }
 
     private void Awake()
     {
@@ -42,21 +42,22 @@ public class ServerLoadHandler : MonoBehaviour
 
     private void UpdateHealLoad()
     {
-        if (!_isBroken && Time.time >= _timeToHealLoadDamageUnit)
+        if (!IsBroken && Time.time >= _timeToHealLoadDamageUnit)
         {
             _currentLoad--;
             _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);
             _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
             _currentLoadStatus = DetermineLoadStatus();
-            if (_currentLoadStatus == LoadStatus.Broken) _isBroken = true;
+            if (_currentLoadStatus == LoadStatus.Broken) IsBroken = true;
             PushVisuals();
         }
     }
 
     private void PushVisuals()
     {
-        if (_isBroken) _svh.DepictBrokenStatus();
-        else _svh.Deselect();
+        if (IsBroken) _svh.DepictBrokenStatus();
+        else _svh.Deactivate();
+
         _svh.DepictLoadStatus(_currentLoadStatus, _currentLoad, _currentMaxLoad);
     }
 
@@ -89,13 +90,13 @@ public class ServerLoadHandler : MonoBehaviour
         _currentLoad++;
         _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
         _currentLoadStatus = DetermineLoadStatus();
-        if (_currentLoadStatus == LoadStatus.Broken) _isBroken = true;
+        if (_currentLoadStatus == LoadStatus.Broken) IsBroken = true;
         PushVisuals();
     }
 
     public bool CheckIfBroken()
     {
-        return _isBroken;
+        return IsBroken;
     }
 
     public void Resetivate()
@@ -106,6 +107,12 @@ public class ServerLoadHandler : MonoBehaviour
         _currentLoadStatus = LoadStatus.Low;
         _currentEncryptionStatus = _startEncryptionStatus;
         //_isBroken = false;
+        PushVisuals();
+    }
+
+    public void RepairServer()
+    {
+        IsBroken = false;
         PushVisuals();
     }
 }
