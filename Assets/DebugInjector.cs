@@ -31,5 +31,10 @@ public class DebugInjector : MonoBehaviour
         {
             FadeController.Instance.InstafadeAll();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            TutorialController.Instance.AdvanceTutorial();
+        }
     }
 }

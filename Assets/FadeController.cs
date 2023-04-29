@@ -14,7 +14,7 @@ public class FadeController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _currentPhase = -2;
+        _currentPhase = -1;
         
         var fh = FindObjectsOfType<FadeHandler>();
         foreach (var f in fh)

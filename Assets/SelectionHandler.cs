@@ -9,12 +9,16 @@ public class SelectionHandler : MonoBehaviour
 
     ServerLoadHandler _slh;
 
+    //settings
+    [SerializeField] bool _isTutorialServer = false;
+
     //state
     public bool CanBeSelected;// { get; private set; }
     bool _isSelected;
     public bool IsActivated;// { get; private set; }
     public bool HasBeenPreviouslyActivated;// { get; private set; }
     public bool IsTargetNode;
+    
 
     private void Awake()
     {
@@ -34,6 +38,8 @@ public class SelectionHandler : MonoBehaviour
     public void ToggleSelectability(bool canBeSelected)
     {
         CanBeSelected = canBeSelected;
+
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         if (HasBeenPreviouslyActivated) CanBeSelected = false;
         if (_slh && _slh.CheckIfBroken()) CanBeSelected = false;
         if (CanBeSelected)
@@ -48,6 +54,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         if (CanBeSelected)
         {
             _isSelected = true;
@@ -57,6 +64,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         if (_isSelected)
         {
             StartActivation();
@@ -65,6 +73,7 @@ public class SelectionHandler : MonoBehaviour
 
     public void StartResetivate()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         HasBeenPreviouslyActivated = false;
         IsTargetNode = false;
 
@@ -75,6 +84,7 @@ public class SelectionHandler : MonoBehaviour
 
     public void StopActivation()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         IsActivated = false;
         CanBeSelected = false;
         BroadcastMessage("Deactivate");
@@ -89,6 +99,7 @@ public class SelectionHandler : MonoBehaviour
 
     public void StartActivationRemotely()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         StartActivation();
     }
 
@@ -105,6 +116,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         _isSelected = false;
         BroadcastMessage("Deselect");
     }

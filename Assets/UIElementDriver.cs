@@ -12,13 +12,14 @@ public class UIElementDriver : MonoBehaviour
     TextMeshProUGUI[] _TMPs;
     Color[] _imageColors;
     Color[] _tmpColors;
-
+    Button[] _buttons;
     private void Awake()
     {
         _images = GetComponentsInChildren<Image>();
         _TMPs = GetComponentsInChildren<TextMeshProUGUI>();
         _imageColors = new Color[_images.Length];
         _tmpColors = new Color[_TMPs.Length];
+        _buttons = GetComponentsInChildren<Button>();
 
         for (int i = 0; i < _images.Length; i++)
         {
@@ -42,6 +43,10 @@ public class UIElementDriver : MonoBehaviour
             {
                 tmp.color = Color.clear;
             }
+            foreach (var button in _buttons)
+            {
+                button.interactable = false;
+            }
         }
         else
         {
@@ -52,6 +57,10 @@ public class UIElementDriver : MonoBehaviour
             for (int i = 0; i < _TMPs.Length; i++)
             {
                 _TMPs[i].color = _tmpColors[i];
+            }
+            foreach (var button in _buttons)
+            {
+                button.interactable = true;
             }
         }
     }

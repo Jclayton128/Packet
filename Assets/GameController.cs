@@ -4,12 +4,41 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [ContextMenu("Start Game")]
+    public static GameController Instance;
+
+    //state
+    bool _isTutorialMode;
+    public bool IsTutorialMode => _isTutorialMode;
+
+    private void Awake()
+    {
+        _isTutorialMode = true;
+        Instance = this;
+    }
+
+
+    public void ToggleTutorialMode()
+    {
+        _isTutorialMode = !_isTutorialMode;
+    }
+
+    public void InitiateDelayedStartGame()
+    {
+        Invoke(nameof(StartGame), 2.5f);
+    }
+
     public void StartGame()
     {
-        UIController.Instance.Message.DisplayMessage("Hi!");
-        UIController.Instance.Packet.ShowPacketPanel();
-        PathController.Instance.CreateNewPathProblem();
+        if (_isTutorialMode)
+        {
+            TutorialController.Instance.StartTutorial();
+        }
+        else
+        {
+            UIController.Instance.Message.DisplayMessage("New Game!", null, "play!");
+            UIController.Instance.Packet.ShowPacketPanel();
+            PathController.Instance.CreateNewPathProblem();
+        }
     }
 
 

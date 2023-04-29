@@ -7,6 +7,8 @@ public class TerminalController : MonoBehaviour
 {
     public static TerminalController Instance;
     public Action TargetTerminalActivated;
+    [SerializeField] SelectionHandler _tutorialStartTerminal = null;
+    [SerializeField] SelectionHandler _tutorialTargetTerminal = null;
 
     //state
     List<TerminalLoadHandler> _terminals = new List<TerminalLoadHandler>();
@@ -37,15 +39,14 @@ public class TerminalController : MonoBehaviour
     {
         if (obj == _targetTerminal)
         {
-            //Debug.Log("success!");
+            TargetTerminalActivated?.Invoke();
+            Debug.Log("success!");
             PathController.Instance.CreateNewPathProblem();
         }
     }
 
     public void CreateRandomStartGoalPair()
     {
-        Debug.Log("Creating Start Goal Pair");
-        
         foreach (var term in _terminals)
         {
             term.GetComponent<SelectionHandler>().StartResetivate();
@@ -90,4 +91,23 @@ public class TerminalController : MonoBehaviour
             terminal.GetComponent<SelectionHandler>().StartResetivate();
         }
     }
+
+    #region Tutorial Support
+    public void SetupTutorialPair()
+    {
+        //foreach (var term in _terminals)
+        //{
+        //    term.GetComponent<SelectionHandler>().StartResetivate();
+        //}
+
+        var start = _tutorialStartTerminal;
+        SelectionHandler sh = start.GetComponent<SelectionHandler>();
+        sh.StartActivationRemotely();
+        _startTerminal = sh;
+
+        _targetTerminal = _tutorialTargetTerminal.GetComponent<SelectionHandler>();
+        _targetTerminal.SetAsTargetNode();
+    }
+
+    #endregion
 }
