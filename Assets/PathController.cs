@@ -17,5 +17,6 @@ public class PathController : MonoBehaviour
         ServerController.Instance.ResetivateAllServers();
         TerminalController.Instance.ResetivateAllTerminals();
         TerminalController.Instance.CreateRandomStartGoalPair();
+        PacketController.Instance.GenerateRandomPacket();
     }
 }
