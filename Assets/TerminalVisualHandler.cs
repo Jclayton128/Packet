@@ -81,13 +81,13 @@ public class TerminalVisualHandler : VisualHandler
     {
         if (isEncrypted)
         {
-            _encryption.enabled = true;
+            //_encryption.enabled = true;
             _encryption.color = ColorController.Instance.Encryption;
         }
         else
         {
-            _encryption.enabled = false;
-            //_encryption.color = Color.clear;
+            //_encryption.enabled = false;
+            _encryption.color = Color.clear;
         }
 
     }
@@ -100,5 +100,11 @@ public class TerminalVisualHandler : VisualHandler
     public void SetAsEndTerminal()
     {
         _base.color = ColorController.Instance.TargetTerminal;
+    }
+
+    public void EnableNonCoreVisual()
+    {
+        _encryption.enabled = true;
+        _selection.enabled = true;
     }
 }

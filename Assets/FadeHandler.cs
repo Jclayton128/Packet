@@ -10,7 +10,7 @@ public class FadeHandler : MonoBehaviour
     [SerializeField] float _fadeDuration = 1f;
     [SerializeField] float _minDelay = 0.5f;
     [SerializeField] float _maxDelay = 2f;
-    [SerializeField] int _phase = 0;
+    public int Phase = 0;
 
     //state
     LineRenderer _lineRenderer;
@@ -33,7 +33,7 @@ public class FadeHandler : MonoBehaviour
 
     public void FadeInCheck(int currentPhase)
     {
-        if (currentPhase == _phase)
+        if (currentPhase == Phase)
         {
             FadeIn(_fadeDuration);
         }
@@ -41,7 +41,7 @@ public class FadeHandler : MonoBehaviour
 
     public void FadeOutCheck(int currentPhase)
     {
-        if (currentPhase == _phase)
+        if (currentPhase == Phase)
         {
             FadeOut(_fadeDuration);
         }
@@ -75,14 +75,13 @@ public class FadeHandler : MonoBehaviour
 
     private void FadeIn(float fadeDuration)
     {
-
         for (int i = 0; i < _srTweens.Length; i++)
         {
             _srTweens[i].Kill();
             //_spriteRenderers[i].enabled = true;
             float delay = UnityEngine.Random.Range(_minDelay, _maxDelay);
+            if (_spriteRenderers[i].color.r <= 0) continue;
             _srTweens[i] = _spriteRenderers[i].DOFade(1, fadeDuration).SetDelay(delay);
-
         }
 
         if (_lineRenderer)
@@ -94,6 +93,9 @@ public class FadeHandler : MonoBehaviour
                 ColorController.Instance.ColdLink);
             _lineTween = _lineRenderer.DOColor(col2_clear, col2_coldLink, _fadeDuration);
         }
+
+        var lvh = GetComponent<LinkVisualHandler>();
+        if (lvh) lvh.HasFadedIn = true;
 
     }
 
@@ -114,5 +116,14 @@ public class FadeHandler : MonoBehaviour
                 ColorController.Instance.ColdLink);
             _lineTween = _lineRenderer.DOColor(col2_coldLink, col2_clear, _fadeDuration);
         }
+    }
+
+    public void AllowNonCoreVisuals()
+    {
+        //var svh = GetComponent<ServerVisualHandler>();
+        //if (svh) svh.EnableNonCoreVisual();
+
+        //var tvh = GetComponent<TerminalVisualHandler>();
+        //if (tvh) tvh.EnableNonCoreVisual();
     }
 }

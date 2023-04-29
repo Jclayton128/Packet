@@ -175,12 +175,13 @@ public class ServerVisualHandler : VisualHandler
 
     }
 
-    //public override void EnableNonCoreVisual()
-    //{
-    //    _encryption.enabled = true;
-    //    for (int i = 0; i < _loadSprites.Length; i++)
-    //    {
-    //        _loadSprites[i].enabled = true;
-    //    }
-    //}
+    public void EnableNonCoreVisual()
+    {
+        _encryption.enabled = true;
+        _selectionSprite.enabled = true;
+        for (int i = 0; i < _loadSprites.Length; i++)
+        {
+            _loadSprites[i].enabled = true;
+        }
+    }
 }

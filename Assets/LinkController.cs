@@ -112,7 +112,14 @@ public class LinkController : MonoBehaviour
         testServer.AddLink(newLink.GetComponent<LinkVisualHandler>());
         pn.AddLink(newLink.GetComponent<LinkVisualHandler>());
 
-        FadeController.Instance.AddFadeHandler(newLink.GetComponent<FadeHandler>());
+        var fh = newLink.GetComponent<FadeHandler>();
+        int phase_t = testServer.GetComponent<FadeHandler>().Phase;
+        int phase_p = pn.GetComponent<FadeHandler>().Phase;
+        int linePhase;
+        if (phase_p < 3 && phase_t < 3) linePhase = 3;
+        else linePhase = 5;
+        fh.Phase = linePhase;
+        FadeController.Instance.AddFadeHandler(fh);
     }
 
 

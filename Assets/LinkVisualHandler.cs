@@ -10,32 +10,36 @@ public class LinkVisualHandler : VisualHandler
     //settings
     [SerializeField] float _deselectAlpha = 0.15f;
     [SerializeField] float _selectAlpha = 1f;
+    public bool HasFadedIn;
 
     private void Awake()
     {
+        HasFadedIn = false;
         _lr = GetComponent<LineRenderer>();
         _lch = GetComponent<LinkConnectionHandler>();
-        Deselect();
-        Resetivate();
+        //Deselect();
+        //Resetivate();
     }
 
     public override void Deselect()
     {
-        if (!_lch.HasBeenActivated)
+        if (HasFadedIn && !_lch.HasBeenActivated)
         {
             Color color = ColorController.Instance.ColdLink;
             color.a = _deselectAlpha;
             _lr.startColor = color;
+            _lr.endColor = color;
         }
     }
 
     public override void Select()
     {
-        if (!_lch.HasBeenActivated)
+        if (HasFadedIn && !_lch.HasBeenActivated)
         {
             Color color = ColorController.Instance.SelectedLink;
             color.a = _selectAlpha;
             _lr.startColor = color;
+            //_lr.endColor = color;
         }
     }
 

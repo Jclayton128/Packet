@@ -14,7 +14,7 @@ public class FadeController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _currentPhase = -1;
+        _currentPhase = -2;
         
         var fh = FindObjectsOfType<FadeHandler>();
         foreach (var f in fh)
@@ -29,6 +29,14 @@ public class FadeController : MonoBehaviour
         foreach (var fh in _fadeHandlers)
         {
             fh.FadeInCheck(_currentPhase);
+        }
+
+        if (_currentPhase == 4)
+        {
+            foreach (var fh in _fadeHandlers)
+            {
+                fh.AllowNonCoreVisuals();
+            }
         }
     }
 
