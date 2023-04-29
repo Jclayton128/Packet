@@ -7,6 +7,8 @@ public class ServerController : MonoBehaviour
 {
     public static ServerController Instance;
 
+    [SerializeField] ServerLoadHandler[] _startingEncryptedServers = null;
+
     /// <summary>
     /// First Arg: previous SLH, second Arg: new SLH
     /// </summary>
@@ -78,5 +80,11 @@ public class ServerController : MonoBehaviour
         }
     }
 
-
+    public void ApplyEncryptionToStartingServers()
+    {
+        foreach (var server in _startingEncryptedServers)
+        {
+            server.EncryptServer();
+        }
+    }
 }

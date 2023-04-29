@@ -38,10 +38,12 @@ public class UIElementDriver : MonoBehaviour
             foreach (var image in _images)
             {
                 image.color = Color.clear;
+                image.enabled = false;
             }
             foreach (var tmp in _TMPs)
             {
                 tmp.color = Color.clear;
+                tmp.enabled = false;
             }
             foreach (var button in _buttons)
             {
@@ -52,10 +54,12 @@ public class UIElementDriver : MonoBehaviour
         {
             for (int i = 0; i < _images.Length; i++)
             {
+                _images[i].enabled = true;
                 _images[i].color = _imageColors[i];
             }
             for (int i = 0; i < _TMPs.Length; i++)
             {
+                _TMPs[i].enabled = true;
                 _TMPs[i].color = _tmpColors[i];
             }
             foreach (var button in _buttons)

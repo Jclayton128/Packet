@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
             UIController.Instance.Message.DisplayMessage("New Game!", null, "play!");
             UIController.Instance.Packet.ShowPacketPanel();
             PathController.Instance.CreateNewPathProblem();
+            ServerController.Instance.ApplyEncryptionToStartingServers();
         }
     }
 

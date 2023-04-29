@@ -37,7 +37,7 @@ public class PacketUIC : MonoBehaviour
     public void SetEncryptionStatus(bool isEncrypted)
     {
         _encryptionStatus.color = ColorController.Instance.Encryption;
-        _encryptionStatus.enabled = isEncrypted;
+        //_encryptionStatus.enabled = isEncrypted;
     }
 
     public void SetPacketValue(int value)

@@ -115,4 +115,15 @@ public class ServerLoadHandler : MonoBehaviour
         IsBroken = false;
         PushVisuals();
     }
+
+    public void EncryptServer()
+    {
+        _currentEncryptionStatus = true;
+        _svh.SetEncryptionStatus(_currentEncryptionStatus);
+    }
+
+    public void EnhanceServer()
+    {
+
+    }
 }

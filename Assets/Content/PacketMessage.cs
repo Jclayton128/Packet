@@ -15,6 +15,7 @@ public class PacketMessage : ScriptableObject
         None, ShowTimer, ShowValue, ShowEncryption,
         SetupStartTutorialTerminals,
         SetupTargetTutorialTerminals,
+        EncryptServers,
         HideMessagePanel
     }
 

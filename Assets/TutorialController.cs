@@ -88,6 +88,7 @@ public class TutorialController : MonoBehaviour
 
             case PacketMessage.SpecialThings.ShowEncryption:
                 UIController.Instance.Packet.ShowHideEncryption(true);
+                UIController.Instance.Packet.SetEncryptionStatus(true);
                 break;
 
             case PacketMessage.SpecialThings.SetupStartTutorialTerminals:
@@ -96,6 +97,10 @@ public class TutorialController : MonoBehaviour
 
             case PacketMessage.SpecialThings.SetupTargetTutorialTerminals:
                 TerminalController.Instance.SetTargetTutorialTerminalAsBlue();
+                break;
+
+            case PacketMessage.SpecialThings.EncryptServers:
+                ServerController.Instance.ApplyEncryptionToStartingServers();
                 break;
         }
     }
