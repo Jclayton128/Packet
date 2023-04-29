@@ -12,11 +12,13 @@ public class ServerLoadHandler : MonoBehaviour
     //settings
     [SerializeField] int _startingMaxLoad = 2;
     [SerializeField] float _timeRequiredToHealLoadDamageUnit = 5f;
+    [SerializeField] bool _startEncryptionStatus = false;
 
     //state
     int _currentMaxLoad;
     float _timeToHealLoadDamageUnit;
     int _currentLoad;
+    bool _currentEncryptionStatus;
     LoadStatus _currentLoadStatus;
 
     private void Awake()
@@ -25,12 +27,14 @@ public class ServerLoadHandler : MonoBehaviour
         _currentLoad = 0;
         _timeToHealLoadDamageUnit = 0;
         _currentLoadStatus = LoadStatus.Low;
+        _currentEncryptionStatus = _startEncryptionStatus;
         _svh = GetComponent<ServerVisualHandler>();
     }
 
     private void Start()
     {
         _svh.DepictMaxLoad(_startingMaxLoad);
+        _svh.SetEncryptionStatus(_currentEncryptionStatus);
     }
 
     private void Update()

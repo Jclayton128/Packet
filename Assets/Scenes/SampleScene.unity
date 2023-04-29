@@ -241,6 +241,10 @@ MonoBehaviour:
   _loadedColor_Low: {r: 1, g: 1, b: 1, a: 1}
   _loadedColor_Mid: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _loadedColor_High: {r: 1, g: 0, b: 0, a: 1}
+  _coldTerminal: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _startTerminal: {r: 0, g: 0, b: 1, a: 1}
+  _endTerminal: {r: 0, g: 1, b: 0, a: 1}
+  _encryption: {r: 0.3962264, g: 0.10715553, b: 0.3962264, a: 1}
 --- !u!4 &1393333175
 Transform:
   m_ObjectHideFlags: 0
@@ -269,11 +273,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136486816203687541, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.93
       objectReference: {fileID: 0}
     - target: {fileID: 2136486816203687541, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 2136486816203687541, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -311,5 +315,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: Server
       objectReference: {fileID: 0}
+    - target: {fileID: 7691960394686805115, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
+      propertyPath: _encryption
+      value: 
+      objectReference: {fileID: 2136486816501430283}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
+--- !u!212 &2136486816501430283 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4081545012226681027, guid: 4a2f85d894479f245aaee965e38cfd48, type: 3}
+  m_PrefabInstance: {fileID: 2136486816501430282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3709639112322764259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3709639111529397448, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_Name
+      value: Terminal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709639111529397454, guid: 1a05823d08d1b054090608a782c1511f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a05823d08d1b054090608a782c1511f, type: 3}

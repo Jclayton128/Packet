@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ServerVisualHandler : MonoBehaviour
-{
-
-    
+{    
     [SerializeField] SpriteRenderer _baseSprite = null;
+    [SerializeField] SpriteRenderer _encryption = null;
     [SerializeField] SpriteRenderer _selectionSprite = null;
     [SerializeField] SpriteRenderer[] _loadSprites = null;
 
@@ -70,5 +69,18 @@ public class ServerVisualHandler : MonoBehaviour
                 _loadSprites[i].color = Color.clear;
             }
         }
+    }
+
+    public void SetEncryptionStatus(bool isEncrypted)
+    {
+        if (isEncrypted)
+        {
+            _encryption.color = ColorController.Instance.Encryption;
+        }
+        else
+        {
+            _encryption.color = Color.clear;
+        }
+
     }
 }
