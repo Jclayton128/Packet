@@ -9,15 +9,20 @@ public class UIController : MonoBehaviour
     MessageUIC _message;
     public MessageUIC Message => _message;
 
+    PacketUIC _packet;
+    public PacketUIC Packet => _packet;
+
 
     private void Awake()
     {
         Instance = this;
         _message = GetComponent<MessageUIC>();
+        _packet = GetComponent<PacketUIC>();
     }
 
     private void Start()
     {
         _message.HideMessage();
+        _packet.HidePacketPanel();
     }
 }

@@ -9,4 +9,13 @@ public class GameController : MonoBehaviour
     {
         UIController.Instance.Message.DisplayMessage("Hi!");
     }
+
+    [ContextMenu("Generate Packet")]
+    public void GeneratePacket()
+    {
+        UIController.Instance.Packet.ShowPacketPanel();
+        UIController.Instance.Packet.SetEncryptionStatus(true);
+        UIController.Instance.Packet.SetPacketTiming(0.5f);
+        UIController.Instance.Packet.SetPacketValue(5);
+    }
 }
