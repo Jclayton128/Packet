@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tut_4
   m_EditorClassIdentifier: 
   _sendingImage: {fileID: 21300000, guid: 9d375c43b4b5ced4ab19e55bd6aaffa0, type: 3}
-  _message: Deliver the packet to the destination.
+  _message: Deliver the packet to the blue terminal to fulfill your function.
   _hint: Click On The Blue Terminal
   _stepToAdvance: 0
   _invokesTutorialPair: 0
