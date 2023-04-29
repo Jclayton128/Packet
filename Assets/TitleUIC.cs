@@ -15,6 +15,9 @@ public class TitleUIC : MonoBehaviour
     [SerializeField] Vector3 _titleRestPoint;
     [SerializeField] Vector3 _newgameRestPoint;
     [SerializeField] Vector3 _creditsRestPoint;
+    [SerializeField] Vector3 _titleExitPoint;
+    [SerializeField] Vector3 _newGameExitPoint;
+    [SerializeField] Vector3 _creditsExitPoint;
     [SerializeField] float _swoopDuration = 2f;
 
     //state
@@ -24,24 +27,49 @@ public class TitleUIC : MonoBehaviour
 
     private void Start()
     {
-        ActivateStart();
+        SwoopInStart();
     }
 
-    [ContextMenu("Swoop Start")]
-    public void ActivateStart()
+    public void SwoopInStart()
     {
         FadeController.Instance.InstafadeAll();
         SwoopInTitle();
         SwoopInButtons();
     }
 
+    public void SwoopOutStart()
+    {
+        SwoopOutTitle();
+        SwoopOutButtons();
+    }
+
+    private void SwoopOutTitle()
+    {
+        _titleTween.Kill();
+        _titleTween = _titleTMP.DOAnchorPos(_titleExitPoint, _swoopDuration).
+            SetEase(Ease.InSine);
+    }
+
+    private void SwoopOutButtons()
+    {
+        _newGameTween.Kill();
+        _newGameTween = _newgameButton.DOAnchorPos(_newGameExitPoint, _swoopDuration).
+            SetEase(Ease.InSine);
+
+        _creditsTween.Kill();
+        _creditsTween = _creditsButton.DOAnchorPos(_creditsExitPoint, _swoopDuration).
+            SetEase(Ease.InSine);
+    }
+
     private void SwoopInButtons()
     {
         _newGameTween.Kill();
-        _newGameTween = _newgameButton.DOAnchorPos(_newgameRestPoint, _swoopDuration);
+        _newGameTween = _newgameButton.DOAnchorPos(_newgameRestPoint, _swoopDuration).
+            SetEase(Ease.OutSine);
 
         _creditsTween.Kill();
-        _creditsTween = _creditsButton.DOAnchorPos(_creditsRestPoint, _swoopDuration);
+        _creditsTween = _creditsButton.DOAnchorPos(_creditsRestPoint, _swoopDuration).
+            SetEase(Ease.OutSine);
     }
 
     private void SwoopInTitle()
