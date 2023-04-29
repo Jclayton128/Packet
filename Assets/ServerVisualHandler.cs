@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,15 @@ public class ServerVisualHandler : VisualHandler
     {
         _slh = GetComponent<ServerLoadHandler>();
         _sh = GetComponent<SelectionHandler>();
+        HideLoadDots();
+    }
+
+    private void HideLoadDots()
+    {
+        foreach (var sr in _loadSprites)
+        {
+            sr.enabled = false;
+        }
     }
 
     private void Start()
@@ -26,7 +36,7 @@ public class ServerVisualHandler : VisualHandler
 
     public override void Select()
     {
-        
+        _selectionSprite.enabled = true;
         _selectionSprite.color = ColorController.Instance.SelectedNode;
     }
 
@@ -38,13 +48,14 @@ public class ServerVisualHandler : VisualHandler
         }
         else
         {
-            _selectionSprite.color = Color.clear;
+            _selectionSprite.enabled = false;
+            //_selectionSprite.color = Color.clear;
         }
     }
 
     public override void Selectable()
     {
-
+        _selectionSprite.enabled = true;
         _selectionSprite.color = ColorController.Instance.SelectableNode;
     }
 
@@ -131,15 +142,18 @@ public class ServerVisualHandler : VisualHandler
         {
             if (i < currentCount)
             {
+                _loadSprites[i].enabled = true;
                 _loadSprites[i].color = loadedColor;
             }
             else if (i < maxCount)
             {
+                _loadSprites[i].enabled = true;
                 _loadSprites[i].color = ColorController.Instance.UnloadedColor;
             }
             else
             {
-                _loadSprites[i].color = Color.clear;
+                _loadSprites[i].enabled = false;
+                //_loadSprites[i].color = Color.clear;
             }
         }
     }
@@ -148,11 +162,13 @@ public class ServerVisualHandler : VisualHandler
     {
         if (isEncrypted)
         {
+            _encryption.enabled = true;
             _encryption.color = ColorController.Instance.Encryption;
         }
         else
         {
-            _encryption.color = Color.clear;
+            _encryption.enabled = false;
+            //_encryption.color = Color.clear;
         }
 
     }

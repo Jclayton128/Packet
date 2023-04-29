@@ -111,6 +111,8 @@ public class LinkController : MonoBehaviour
 
         testServer.AddLink(newLink.GetComponent<LinkVisualHandler>());
         pn.AddLink(newLink.GetComponent<LinkVisualHandler>());
+
+        FadeController.Instance.AddFadeHandler(newLink.GetComponent<FadeHandler>());
     }
 
 

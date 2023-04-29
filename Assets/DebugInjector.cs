@@ -16,5 +16,20 @@ public class DebugInjector : MonoBehaviour
         {
             PathController.Instance.CreateNewPathProblem();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FadeController.Instance.DecrementFadeOutPhase();
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            FadeController.Instance.IncrementFadeInPhase();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FadeController.Instance.InstafadeAll();
+        }
     }
 }

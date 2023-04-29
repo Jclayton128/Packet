@@ -37,11 +37,13 @@ public class TerminalVisualHandler : VisualHandler
 
     public override void Deselect()
     {
-        _selection.color = Color.clear;
+        _selection.enabled = false;
+        //_selection.color = Color.clear;
     }
 
     public override void Selectable()
     {
+        _selection.enabled = true;
         _selection.color = ColorController.Instance.SelectableNode;
     }
 
@@ -79,11 +81,13 @@ public class TerminalVisualHandler : VisualHandler
     {
         if (isEncrypted)
         {
+            _encryption.enabled = true;
             _encryption.color = ColorController.Instance.Encryption;
         }
         else
         {
-            _encryption.color = Color.clear;
+            _encryption.enabled = false;
+            //_encryption.color = Color.clear;
         }
 
     }

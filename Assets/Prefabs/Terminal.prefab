@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 4117684721513657191}
   - component: {fileID: 1990549910475919969}
   - component: {fileID: 3896345635748317030}
+  - component: {fileID: 8590622299870419190}
   m_Layer: 0
   m_Name: Terminal
   m_TagString: Terminal
@@ -294,6 +295,22 @@ PolygonCollider2D:
       - {x: -0.8518776, y: 0.0036108494}
       - {x: -0.005973816, y: -0.8273892}
       - {x: 0.8737503, y: 0.022619188}
+--- !u!114 &8590622299870419190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709639111529397448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3417558e88bb2db4bb2b07568214af1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeDuration: 1
+  _minDelay: 0.25
+  _maxDelay: 1
+  _phase: 4
 --- !u!1 &3709639112829181535
 GameObject:
   m_ObjectHideFlags: 0
