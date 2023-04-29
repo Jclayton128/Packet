@@ -11,6 +11,8 @@ public abstract class VisualHandler : MonoBehaviour
 
     public abstract void Activate();
 
+    //public abstract void EnableNonCoreVisual();
+
     public abstract void Deactivate();
 
     public abstract void Resetivate();

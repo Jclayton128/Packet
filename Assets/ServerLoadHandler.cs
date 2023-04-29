@@ -42,7 +42,7 @@ public class ServerLoadHandler : MonoBehaviour
 
     private void UpdateHealLoad()
     {
-        if (!IsBroken && Time.time >= _timeToHealLoadDamageUnit)
+        if (_currentLoad > 0 && !IsBroken && Time.time >= _timeToHealLoadDamageUnit)
         {
             _currentLoad--;
             _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);

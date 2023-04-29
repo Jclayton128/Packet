@@ -24,7 +24,7 @@ public class ServerVisualHandler : VisualHandler
     {
         foreach (var sr in _loadSprites)
         {
-            sr.enabled = false;
+            sr.color = Color.clear;
         }
     }
 
@@ -34,9 +34,11 @@ public class ServerVisualHandler : VisualHandler
         Resetivate();
     }
 
+
+
     public override void Select()
     {
-        _selectionSprite.enabled = true;
+        //_selectionSprite.enabled = true;
         _selectionSprite.color = ColorController.Instance.SelectedNode;
     }
 
@@ -48,14 +50,14 @@ public class ServerVisualHandler : VisualHandler
         }
         else
         {
-            _selectionSprite.enabled = false;
-            //_selectionSprite.color = Color.clear;
+            //_selectionSprite.enabled = false;
+            _selectionSprite.color = Color.clear;
         }
     }
 
     public override void Selectable()
     {
-        _selectionSprite.enabled = true;
+        //_selectionSprite.enabled = true;
         _selectionSprite.color = ColorController.Instance.SelectableNode;
     }
 
@@ -142,18 +144,18 @@ public class ServerVisualHandler : VisualHandler
         {
             if (i < currentCount)
             {
-                _loadSprites[i].enabled = true;
+                //_loadSprites[i].enabled = true;
                 _loadSprites[i].color = loadedColor;
             }
             else if (i < maxCount)
             {
-                _loadSprites[i].enabled = true;
+                //_loadSprites[i].enabled = true;
                 _loadSprites[i].color = ColorController.Instance.UnloadedColor;
             }
             else
             {
-                _loadSprites[i].enabled = false;
-                //_loadSprites[i].color = Color.clear;
+                //_loadSprites[i].enabled = false;
+                _loadSprites[i].color = Color.clear;
             }
         }
     }
@@ -162,15 +164,23 @@ public class ServerVisualHandler : VisualHandler
     {
         if (isEncrypted)
         {
-            _encryption.enabled = true;
+            //_encryption.enabled = true;
             _encryption.color = ColorController.Instance.Encryption;
         }
         else
         {
-            _encryption.enabled = false;
-            //_encryption.color = Color.clear;
+            //_encryption.enabled = false;
+            _encryption.color = Color.clear;
         }
 
     }
 
+    //public override void EnableNonCoreVisual()
+    //{
+    //    _encryption.enabled = true;
+    //    for (int i = 0; i < _loadSprites.Length; i++)
+    //    {
+    //        _loadSprites[i].enabled = true;
+    //    }
+    //}
 }

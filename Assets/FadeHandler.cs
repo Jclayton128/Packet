@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class FadeHandler : MonoBehaviour
 {
+
     //settings
     [SerializeField] float _fadeDuration = 1f;
     [SerializeField] float _minDelay = 0.5f;
@@ -19,7 +20,7 @@ public class FadeHandler : MonoBehaviour
     Tween _lineTween;
 
     private void Awake()
-    {
+    {  
         _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         _srTweens = new Tween[_spriteRenderers.Length];
         _startingColors = new Color[_spriteRenderers.Length];
@@ -51,6 +52,7 @@ public class FadeHandler : MonoBehaviour
         for (int i = 0; i < _srTweens.Length; i++)
         {
             _srTweens[i].Kill();
+            //_spriteRenderers[i].enabled = false;
             Color col = new Color(
                 _spriteRenderers[i].color.r,
                 _spriteRenderers[i].color.g,
@@ -59,7 +61,7 @@ public class FadeHandler : MonoBehaviour
         }
         if (_lineRenderer)
         {
-            _lineRenderer.enabled = true;
+            //_lineRenderer.enabled = false;
             _lineTween.Kill();
             Color col = new Color(
                 _lineRenderer.startColor.r,
@@ -73,16 +75,19 @@ public class FadeHandler : MonoBehaviour
 
     private void FadeIn(float fadeDuration)
     {
+
         for (int i = 0; i < _srTweens.Length; i++)
         {
             _srTweens[i].Kill();
+            //_spriteRenderers[i].enabled = true;
             float delay = UnityEngine.Random.Range(_minDelay, _maxDelay);
             _srTweens[i] = _spriteRenderers[i].DOFade(1, fadeDuration).SetDelay(delay);
+
         }
 
         if (_lineRenderer)
         {
-            _lineRenderer.enabled = true;
+            //_lineRenderer.enabled = true;
             _lineTween.Kill();
             Color2 col2_clear = new Color2(Color.clear, Color.clear);
             Color2 col2_coldLink = new Color2(ColorController.Instance.ColdLink,
@@ -102,7 +107,7 @@ public class FadeHandler : MonoBehaviour
         }
         if (_lineRenderer)
         {
-            _lineRenderer.enabled = true;
+            //_lineRenderer.enabled = true;
             _lineTween.Kill();
             Color2 col2_clear = new Color2(Color.clear, Color.clear);
             Color2 col2_coldLink = new Color2(ColorController.Instance.ColdLink,

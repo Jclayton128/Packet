@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     PacketUIC _packet;
     public PacketUIC Packet => _packet;
 
+    TitleUIC _title;
+    public TitleUIC Title => _title;    
 
     private void Awake()
     {
