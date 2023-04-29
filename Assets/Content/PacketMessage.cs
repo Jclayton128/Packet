@@ -17,7 +17,8 @@ public class PacketMessage : ScriptableObject
         SetupTargetTutorialTerminals,
         EncryptServers,
         HideMessagePanel,
-        ShowPacketPanel
+        ShowPacketPanel,
+        ShowToolPanel
     }
 
 [SerializeField] Sprite _sendingImage = null;

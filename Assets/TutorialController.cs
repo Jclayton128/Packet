@@ -106,6 +106,10 @@ public class TutorialController : MonoBehaviour
                 UIController.Instance.Packet.ShowHideValue(false);
                 UIController.Instance.Packet.ShowHideEncryption(false);
                 break;
+
+            case PacketMessage.SpecialThings.ShowToolPanel:
+                UIController.Instance.Tool.ShowToolPanel();
+                break;
         }
     }
 

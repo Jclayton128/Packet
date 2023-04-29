@@ -33,7 +33,6 @@ public class MessageUIC : MonoBehaviour
 
     public void HandleMessagePanelClicked()
     {
-        Debug.Log("clicked");
         MessagePanelClicked?.Invoke();
     }
 }
