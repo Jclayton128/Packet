@@ -26,16 +26,32 @@ public class TerminalController : MonoBehaviour
         }
     }
 
-    public void ActivateRandomTerminal()
+    public void CreateRandomStartGoalPair()
     {
-        Debug.Log("Activate random terminal");
+        Debug.Log("Creating Start Goal Pair");
         foreach (var term in _terminals)
         {
             term.GetComponent<SelectionHandler>().StartResetivate();
         }
 
         int rand = UnityEngine.Random.Range(0, _terminals.Count);
-        var terminal = _terminals[rand];
-        terminal.GetComponent<SelectionHandler>().StartActivationRemotely();
+        var start = _terminals[rand];
+        start.GetComponent<SelectionHandler>().StartActivationRemotely();
+
+        int breaker = 10;
+        TerminalLoadHandler goal;
+        do
+        {
+            int rand1 = UnityEngine.Random.Range(0, _terminals.Count);
+            goal = _terminals[rand1];
+            breaker--;
+            if (breaker <= 0) break;
+        }
+        while (goal == start);
+
+        if (goal != null)
+        {
+            goal.GetComponent<SelectionHandler>().SetAsTargetNode();
+        }
     }
 }

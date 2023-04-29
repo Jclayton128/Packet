@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class SelectionHandler : MonoBehaviour
     bool _isSelected;
     public bool IsActivated;// { get; private set; }
     public bool HasBeenPreviouslyActivated;// { get; private set; }
+    public bool IsTargetNode;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class SelectionHandler : MonoBehaviour
         _isSelected = false;
          IsActivated = false;
         HasBeenPreviouslyActivated = false;
+        IsTargetNode = false;
     }
 
     private void Start()
@@ -57,6 +60,7 @@ public class SelectionHandler : MonoBehaviour
     public void StartResetivate()
     {
         HasBeenPreviouslyActivated = false;
+        IsTargetNode = false;
         StopActivation();
     }
 
@@ -66,6 +70,13 @@ public class SelectionHandler : MonoBehaviour
         CanBeSelected = false;
         BroadcastMessage("Deactivate");
     }
+
+    internal void SetAsTargetNode()
+    {
+        IsTargetNode = true;
+        GetComponent<TerminalVisualHandler>().SetAsEndTerminal();
+    }
+
 
     public void StartActivationRemotely()
     {

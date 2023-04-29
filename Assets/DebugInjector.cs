@@ -14,7 +14,7 @@ public class DebugInjector : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            TerminalController.Instance.ActivateRandomTerminal();
+            TerminalController.Instance.CreateRandomStartGoalPair();
         }
     }
 }

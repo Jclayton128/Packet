@@ -58,7 +58,14 @@ public class TerminalVisualHandler : VisualHandler
         }
         else
         {
-            _base.color = ColorController.Instance.ColdNode;
+            if (_sh.IsTargetNode)
+            {
+                _base.color = ColorController.Instance.TargetTerminal;
+            }
+            else
+            {
+                _base.color = ColorController.Instance.ColdNode;
+            }
         }
     }
 
