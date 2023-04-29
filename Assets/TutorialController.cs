@@ -75,11 +75,8 @@ public class TutorialController : MonoBehaviour
                 break;
 
             case PacketMessage.SpecialThings.ShowTimer:
-                //fragile! must be called before other packet panel showings
-                UIController.Instance.Packet.ShowPacketPanel();                
-                UIController.Instance.Packet.ShowHideTimer(true);
-                UIController.Instance.Packet.ShowHideValue(false);
-                UIController.Instance.Packet.ShowHideEncryption(false);
+                //fragile! must be called before other packet panel showings            
+                UIController.Instance.Packet.ShowHideTimer(true); 
                 break;
 
             case PacketMessage.SpecialThings.ShowValue:
@@ -101,6 +98,13 @@ public class TutorialController : MonoBehaviour
 
             case PacketMessage.SpecialThings.EncryptServers:
                 ServerController.Instance.ApplyEncryptionToStartingServers();
+                break;            
+            
+            case PacketMessage.SpecialThings.ShowPacketPanel:
+                UIController.Instance.Packet.ShowPacketPanel();
+                UIController.Instance.Packet.ShowHideTimer(false);
+                UIController.Instance.Packet.ShowHideValue(false);
+                UIController.Instance.Packet.ShowHideEncryption(false);
                 break;
         }
     }
@@ -127,7 +131,8 @@ public class TutorialController : MonoBehaviour
         {
             AdvanceTutorial();
             _isInTutorialPair = false;
-            TerminalController.Instance.CreateRandomStartGoalPair();
+            PathController.Instance.CreateNewPathProblem();
+            //TerminalController.Instance.CreateRandomStartGoalPair();
         }
     }
 }

@@ -45,6 +45,13 @@ public class TerminalController : MonoBehaviour
         }
     }
 
+   public void HandleDestroyPacketClick()
+    {
+        //TODO deduct value
+
+        PathController.Instance.CreateNewPathProblem();
+    }
+
     public void CreateRandomStartGoalPair()
     {
         foreach (var term in _terminals)

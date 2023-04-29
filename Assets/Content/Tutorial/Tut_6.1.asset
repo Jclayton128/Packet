@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e33c6def6514af2458fe12f175310123, type: 3}
-  m_Name: Tut_6
+  m_Name: Tut_6.1
   m_EditorClassIdentifier: 
   _sendingImage: {fileID: 21300000, guid: 9d375c43b4b5ced4ab19e55bd6aaffa0, type: 3}
-  _message: Work efficiently. Packets must arrive in time.
+  _message: Work efficiently. Packets must arrive before its timer runs out.
   _hint: Deliver Another Packet
   _stepToAdvance: 0
   _invokesTutorialPair: 0
