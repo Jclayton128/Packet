@@ -12,12 +12,14 @@ public class TerminalController : MonoBehaviour
     List<TerminalLoadHandler> _terminals = new List<TerminalLoadHandler>();
     public List<TerminalLoadHandler> Terminals => _terminals;
 
-    SelectionHandler _targetTerminal;
+    public SelectionHandler _startTerminal;
+    public SelectionHandler _targetTerminal;
 
     private void Awake()
     {
         Instance = this;
         _targetTerminal = null;
+        _startTerminal = null;
         FindAllTerminals();
     }
 
@@ -51,7 +53,9 @@ public class TerminalController : MonoBehaviour
 
         int rand = UnityEngine.Random.Range(0, _terminals.Count);
         var start = _terminals[rand];
-        start.GetComponent<SelectionHandler>().StartActivationRemotely();
+        SelectionHandler sh = start.GetComponent<SelectionHandler>();
+        sh.StartActivationRemotely();
+        _startTerminal = sh;
 
         int breaker = 10;
         TerminalLoadHandler goal;
@@ -60,21 +64,27 @@ public class TerminalController : MonoBehaviour
             int rand1 = UnityEngine.Random.Range(0, _terminals.Count);
             goal = _terminals[rand1];
             breaker--;
-            if (breaker <= 0) break;
+            if (breaker <= 0)
+            {
+                Debug.LogWarning("Breaker!");
+                break;
+            }
         }
         while (goal == start);
 
         if (goal != null)
         {
-            SelectionHandler sh = goal.GetComponent<SelectionHandler>();
-            sh.SetAsTargetNode();
-            _targetTerminal = sh;
+            SelectionHandler sh1 = goal.GetComponent<SelectionHandler>();
+            sh1.SetAsTargetNode();
+            _targetTerminal = sh1;
         }
     }
 
 
     public void ResetivateAllTerminals()
     {
+        _startTerminal = null;
+        _targetTerminal = null;
         foreach (var terminal in _terminals)
         {
             terminal.GetComponent<SelectionHandler>().StartResetivate();

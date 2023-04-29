@@ -21,19 +21,16 @@ public class ServerLoadHandler : MonoBehaviour
     int _currentLoad;
     bool _currentEncryptionStatus;
     LoadStatus _currentLoadStatus;
+    bool _isBroken;
 
     private void Awake()
     {
-        _currentMaxLoad = _startingMaxLoad;
-        _currentLoad = 0;
-        _timeToHealLoadDamageUnit = 0;
-        _currentLoadStatus = LoadStatus.Low;
-        _currentEncryptionStatus = _startEncryptionStatus;
         _svh = GetComponent<ServerVisualHandler>();
     }
 
     private void Start()
     {
+        Resetivate();
         _svh.DepictMaxLoad(_startingMaxLoad);
         _svh.SetEncryptionStatus(_currentEncryptionStatus);
     }
@@ -45,18 +42,21 @@ public class ServerLoadHandler : MonoBehaviour
 
     private void UpdateHealLoad()
     {
-        if (Time.time >= _timeToHealLoadDamageUnit)
+        if (!_isBroken && Time.time >= _timeToHealLoadDamageUnit)
         {
             _currentLoad--;
             _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);
             _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
+            _currentLoadStatus = DetermineLoadStatus();
+            if (_currentLoadStatus == LoadStatus.Broken) _isBroken = true;
             PushVisuals();
         }
     }
 
     private void PushVisuals()
     {
-        _currentLoadStatus = DetermineLoadStatus();
+        if (_isBroken) _svh.DepictBrokenStatus();
+        else _svh.Deselect();
         _svh.DepictLoadStatus(_currentLoadStatus, _currentLoad, _currentMaxLoad);
     }
 
@@ -88,6 +88,24 @@ public class ServerLoadHandler : MonoBehaviour
         ServerActivated?.Invoke(this);
         _currentLoad++;
         _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
+        _currentLoadStatus = DetermineLoadStatus();
+        if (_currentLoadStatus == LoadStatus.Broken) _isBroken = true;
+        PushVisuals();
+    }
+
+    public bool CheckIfBroken()
+    {
+        return _isBroken;
+    }
+
+    public void Resetivate()
+    {
+        _currentMaxLoad = _startingMaxLoad;
+        _currentLoad = 0;
+        _timeToHealLoadDamageUnit = 0;
+        _currentLoadStatus = LoadStatus.Low;
+        _currentEncryptionStatus = _startEncryptionStatus;
+        //_isBroken = false;
         PushVisuals();
     }
 }

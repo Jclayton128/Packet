@@ -7,6 +7,8 @@ public class SelectionHandler : MonoBehaviour
 {
     public Action<SelectionHandler> NodeActivated;
 
+    ServerLoadHandler _slh;
+
     //state
     public bool CanBeSelected;// { get; private set; }
     bool _isSelected;
@@ -16,6 +18,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void Awake()
     {
+        _slh = GetComponent<ServerLoadHandler>();
         CanBeSelected = false;
         _isSelected = false;
          IsActivated = false;
@@ -32,6 +35,7 @@ public class SelectionHandler : MonoBehaviour
     {
         CanBeSelected = canBeSelected;
         if (HasBeenPreviouslyActivated) CanBeSelected = false;
+        if (_slh && _slh.CheckIfBroken()) CanBeSelected = false;
         if (CanBeSelected)
         {
             GetComponent<VisualHandler>().Selectable();

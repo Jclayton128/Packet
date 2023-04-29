@@ -75,6 +75,11 @@ public class ServerVisualHandler : VisualHandler
         SetLoadColor(ColorController.Instance.UnloadedColor, 0,  maxCount);
     }
 
+    public void DepictBrokenStatus()
+    {
+        _baseSprite.color = ColorController.Instance.BrokenNode;
+    }
+
     public void DepictLoadStatus(ServerLoadHandler.LoadStatus status, int currentLoad,
         int maxLoad)
     {

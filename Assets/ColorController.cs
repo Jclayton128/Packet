@@ -47,6 +47,11 @@ public class ColorController : MonoBehaviour
     [SerializeField] Color _selectedNode = Color.white;
     public Color SelectedNode => _selectedNode;
 
+
+    [SerializeField] Color _brokenNode = Color.red;
+    public Color BrokenNode => _brokenNode;
+
+
     [SerializeField] Color _selectableNode = Color.white;
     public Color SelectableNode => _selectableNode;
 
