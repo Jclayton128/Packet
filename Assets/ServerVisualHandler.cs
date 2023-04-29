@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerVisualHandler : MonoBehaviour
+public class ServerVisualHandler : VisualHandler
 {    
     [SerializeField] SpriteRenderer _baseSprite = null;
     [SerializeField] SpriteRenderer _encryption = null;
@@ -14,12 +14,12 @@ public class ServerVisualHandler : MonoBehaviour
         Deselect();
     }
 
-    public void Select()
+    public override void Select()
     {
-        _selectionSprite.color = ColorController.Instance.HighlightColor;
+        _selectionSprite.color = ColorController.Instance.Selection;
     }
 
-    public void Deselect()
+    public override void Deselect()
     {
         _selectionSprite.color = Color.clear;
     }

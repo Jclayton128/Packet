@@ -99,6 +99,9 @@ public class LinkController : MonoBehaviour
         newLink.positionCount = 2;
         newLink.SetPosition(0, testServer.transform.position);
         newLink.SetPosition(1, pn.transform.position);
+
+        testServer.AddLink(newLink.GetComponent<LinkVisualHandler>());
+        pn.AddLink(newLink.GetComponent<LinkVisualHandler>());
     }
 
     [ContextMenu("Recheck Links")]

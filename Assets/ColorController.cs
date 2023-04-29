@@ -9,8 +9,8 @@ public class ColorController : MonoBehaviour
 
 
     //settings
-    [SerializeField] Color _highlightColor = Color.white;
-    public Color HighlightColor => _highlightColor;
+    [SerializeField] Color _selection = Color.white;
+    public Color Selection => _selection;
 
 
     [SerializeField] Color _unloadedColor = Color.gray;
@@ -27,6 +27,10 @@ public class ColorController : MonoBehaviour
 
     [SerializeField] Color _loadedColor_High = Color.red;
     public Color LoadedColor_High => _loadedColor_High;
+
+
+    [SerializeField] Color _coldLink = Color.gray;
+    public Color ColdLink => _coldLink;
 
 
     [SerializeField] Color _coldTerminal = Color.gray;

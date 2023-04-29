@@ -6,6 +6,7 @@ public class LinkHandler : MonoBehaviour
 {
     public List<LinkHandler> _neighborServers = new List<LinkHandler>();
     public List<LinkHandler> _neighborTerminals = new List<LinkHandler>();
+    public List<LinkVisualHandler> _links = new List<LinkVisualHandler>();
 
     private void Awake()
     {
@@ -37,6 +38,40 @@ public class LinkHandler : MonoBehaviour
             return false;
         }
         else return true;
+    }
+
+    public void AddLink(LinkVisualHandler lvh)
+    {
+        if (!_links.Contains(lvh))
+        {
+            _links.Add(lvh);
+        }
+    }
+
+    public void Select()
+    {
+        SelectLinks();
+    }
+
+    public void Deselect()
+    {
+        DeselectLinks();
+    }
+
+    private void SelectLinks()
+    {
+        foreach (var link in _links)
+        {
+            link.Select();
+        }
+    }
+
+    private void DeselectLinks()
+    {
+        foreach (var link in _links)
+        {
+            link.Deselect();
+        }
     }
 
     public void ForgetAllNeighbors()
