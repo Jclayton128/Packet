@@ -22,6 +22,7 @@ public class ToolResourceController : MonoBehaviour
     {
         UIController.Instance.Tool.SetResourceAmount(_currentResources);
         SetToolCosts();
+        PushToolAvailability();
     }
 
     public void SetToolCosts()
@@ -48,6 +49,7 @@ public class ToolResourceController : MonoBehaviour
 
     public void PushToolAvailability()
     {
+        Debug.Log("ping");
         for (int i = 0; i < _toolCosts.Length; i++)
         {
             if (_currentResources >= _toolCosts[i])

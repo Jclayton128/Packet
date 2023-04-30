@@ -47,7 +47,7 @@ public class UIElementDriver : MonoBehaviour
             }
             foreach (var button in _buttons)
             {
-                button.interactable = false;
+                button.enabled = false;
             }
         }
         else
@@ -64,7 +64,7 @@ public class UIElementDriver : MonoBehaviour
             }
             foreach (var button in _buttons)
             {
-                button.interactable = true;
+                button.enabled = true;
             }
         }
     }

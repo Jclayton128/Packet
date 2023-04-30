@@ -111,20 +111,29 @@ public class ServerLoadHandler : MonoBehaviour
         PushVisuals();
     }
 
+    [ContextMenu("Repair")]
     public void RepairServer()
     {
         IsBroken = false;
+        _currentLoad = 0;
+        _timeToHealLoadDamageUnit = 0;
         PushVisuals();
     }
 
+    [ContextMenu("Encrypt")]
     public void EncryptServer()
     {
         _currentEncryptionStatus = true;
         _svh.SetEncryptionStatus(_currentEncryptionStatus);
     }
 
-    public void EnhanceServer()
+    [ContextMenu("Capacity")]
+    public void CapacitizeServer()
     {
-
+        _currentMaxLoad++;
+        _timeToHealLoadDamageUnit = 0;
+        _currentLoadStatus = DetermineLoadStatus();
+        _svh.DepictMaxLoad(_currentMaxLoad);
+        PushVisuals();
     }
 }

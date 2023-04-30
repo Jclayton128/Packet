@@ -1666,11 +1666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a46b01284efcd40925c745cb511d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minValue: 3
-  _maxValue: 9
+  _minValue: 1
+  _maxValue: 5
   _minTime: 10
   _maxTime: 40
   _moveCostMultiplier: 0.5
+  _encryptionPenaltyChance: 0.3
 --- !u!114 &1393333182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d35f65c2c964b843846704c199db04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toolCosts: 0a0000001e00000032000000
+  _toolCosts: 0a000000140000001e000000
 --- !u!1001 &1393350467
 PrefabInstance:
   m_ObjectHideFlags: 0

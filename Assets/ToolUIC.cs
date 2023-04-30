@@ -38,6 +38,8 @@ public class ToolUIC : MonoBehaviour
 
     public void SetToolInteractable(int tool, bool isInteractable)
     {
+        //Debug.Log($"tool {tool} is {isInteractable}");
         _toolButtons[tool].interactable = isInteractable;
+        //_toolButtons[tool].gameObject.SetActive( isInteractable);
     }
 }
