@@ -26,7 +26,7 @@ public class TutorialController : MonoBehaviour
 
     private void Start()
     {
-        ServerController.Instance.NodeBridgeActivated +=
+        ServerController.Instance.NodeActivated +=
             HandlePossibleAdvancementViaServerActivation;
 
         TerminalController.Instance.TargetTerminalActivated +=
@@ -44,6 +44,7 @@ public class TutorialController : MonoBehaviour
 
     public void AdvanceTutorial()
     {
+        if (!GameController.Instance.IsTutorialMode) return;
         if (_currentTutorialStep < _tutorialMessages.Length - 1)
         {
             _currentTutorialStep++;

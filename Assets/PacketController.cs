@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PacketController : MonoBehaviour
     [SerializeField] int _maxValue = 9;
     [SerializeField] float _minTime = 10f; //seconds
     [SerializeField] float _maxTime = 40f;
+    [SerializeField] float _moveCostMultiplier = 1f;
 
     //state
     Packet _currentPacket;
@@ -19,6 +21,19 @@ public class PacketController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        TerminalController.Instance.TargetTerminalActivated += GainCurrentPacket;
+        ServerController.Instance.NodeActivated += HandleNodeJump;
+    }
+
+    private void HandleNodeJump(SelectionHandler arg1, SelectionHandler arg2)
+    {
+        float cost = (arg1.transform.position - arg2.transform.position)
+            .magnitude * _moveCostMultiplier;
+        _timeRemainingForCurrentPacket -= cost;
     }
 
     public void GenerateRandomPacket()
@@ -44,7 +59,28 @@ public class PacketController : MonoBehaviour
             _timeRemainingForCurrentPacket -= Time.deltaTime;
             float factor = _timeRemainingForCurrentPacket / _maxTime;
             UIController.Instance.Packet.SetPacketTiming(factor);
+            if (_timeRemainingForCurrentPacket <= 0)
+            {
+                Debug.Log("out of time!");
+                LoseCurrentPackage();
+            }
         }
+
+   
+    }
+
+    public void GainCurrentPacket()
+    {
+        //TODO chaching audio
+        ToolResourceController.Instance.GainResources(_currentPacket.Value);
+        PathController.Instance.CreateNewPathProblem();
+    }
+
+    public void LoseCurrentPackage()
+    {
+        //TODO negative audio
+        ToolResourceController.Instance.LoseResource(_currentPacket.Value);
+        PathController.Instance.CreateNewPathProblem();
     }
 
 }

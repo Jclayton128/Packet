@@ -47,9 +47,8 @@ public class TerminalController : MonoBehaviour
 
    public void HandleDestroyPacketClick()
     {
-        //TODO deduct value
-
-        PathController.Instance.CreateNewPathProblem();
+       
+        PacketController.Instance.LoseCurrentPackage();
     }
 
     public void CreateRandomStartGoalPair()

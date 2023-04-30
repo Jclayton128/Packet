@@ -12,7 +12,7 @@ public class ServerController : MonoBehaviour
     /// <summary>
     /// First Arg: previous SLH, second Arg: new SLH
     /// </summary>
-    public Action<SelectionHandler, SelectionHandler> NodeBridgeActivated;
+    public Action<SelectionHandler, SelectionHandler> NodeActivated;
 
     //state
     List<ServerLoadHandler> _servers = new List<ServerLoadHandler>();
@@ -68,7 +68,7 @@ public class ServerController : MonoBehaviour
         {
             _previousActivatedNode = _currentActivatedNode;
             _currentActivatedNode = newlyActivatedNode;
-            NodeBridgeActivated?.Invoke(_previousActivatedNode, _currentActivatedNode);
+            NodeActivated?.Invoke(_previousActivatedNode, _currentActivatedNode);
         }
     }
 

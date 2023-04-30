@@ -28,7 +28,7 @@ public class LinkController : MonoBehaviour
         FindAllServers();
         FindAllTerminals();
         CreateAllLinks();
-        ServerController.Instance.NodeBridgeActivated += HandleServerConnection;
+        ServerController.Instance.NodeActivated += HandleServerConnection;
     }
 
   
