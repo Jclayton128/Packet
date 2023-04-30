@@ -11,17 +11,20 @@ public class TitleUIC : MonoBehaviour
     [SerializeField] RectTransform _titleTMP;
     [SerializeField] RectTransform _newgameButton;
     [SerializeField] RectTransform _creditsButton;
-    [SerializeField] Vector3 _titleSlowPoint;
+    [SerializeField] RectTransform _subtitleTMP;
     [SerializeField] Vector3 _titleRestPoint;
     [SerializeField] Vector3 _newgameRestPoint;
     [SerializeField] Vector3 _creditsRestPoint;
+    [SerializeField] Vector3 _subtitleRestPoint;
     [SerializeField] Vector3 _titleExitPoint;
     [SerializeField] Vector3 _newGameExitPoint;
     [SerializeField] Vector3 _creditsExitPoint;
+    [SerializeField] Vector3 _subtitleExitPoint;
     [SerializeField] float _swoopDuration = 2f;
 
     //state
     Tween _titleTween;
+    Tween _subtitleTween;
     Tween _newGameTween;
     Tween _creditsTween;
 
@@ -47,6 +50,10 @@ public class TitleUIC : MonoBehaviour
     {
         _titleTween.Kill();
         _titleTween = _titleTMP.DOAnchorPos(_titleExitPoint, _swoopDuration).
+            SetEase(Ease.InSine);
+
+        _subtitleTween.Kill();
+        _subtitleTween = _subtitleTMP.DOAnchorPos(_subtitleExitPoint, _swoopDuration).
             SetEase(Ease.InSine);
     }
 
@@ -75,10 +82,12 @@ public class TitleUIC : MonoBehaviour
     private void SwoopInTitle()
     {
         _titleTween.Kill();
-        //_swoopTween = _titleTMP.DOMove(_titleRestPoint, _swoopDuration);
         _titleTween = _titleTMP.DOAnchorPos(_titleRestPoint, _swoopDuration).
             SetEase(Ease.OutSine);
-         //_titleTMP.DOAnchorPos(_titleRestPoint, _swoopDuration).
-         //   SetDelay(_swoopDuration*.5f);
+
+        _subtitleTween.Kill();
+        _subtitleTween = _subtitleTMP.DOAnchorPos(_subtitleRestPoint, _swoopDuration).
+            SetEase(Ease.OutSine);
+
     }
 }
