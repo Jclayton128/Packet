@@ -39,7 +39,19 @@ public class StorylineController : MonoBehaviour
         }
     }
 
-    public StoryMessage GenerateRandomStoryMessage()
+
+    public StoryMessage AdvanceToNextStoryMessage()
+    {
+        //randomly pick either a random mesage or a storyline message
+        //if a storyline message, randomly pick a storyline.
+        //once storyline picked, draw from either a happy or grim bucket based
+        //on the faction score.
+
+        return GenerateRandomStoryMessage();
+    }
+
+
+    private StoryMessage GenerateRandomStoryMessage()
     {
         if (_unusedRandomMessages.Count < 1)
         {

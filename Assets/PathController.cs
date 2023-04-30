@@ -13,12 +13,32 @@ public class PathController : MonoBehaviour
 
     public void CreateNewPathProblem()
     {
-        var sm = StorylineController.Instance.GenerateRandomStoryMessage();
-        UIController.Instance.Message.DisplayStoryMessage(sm);
-
+        Debug.Log("Creating new path problem");
         LinkController.Instance.ResetivateAllLinks();
         ServerController.Instance.ResetivateAllServers();
         TerminalController.Instance.ResetivateAllTerminals();
+
+        if (GameController.Instance.IsTutorialMode)
+        {
+            NewPathDelayedItems();
+        }
+        else
+        {
+            UIController.Instance.Message.ClearStoryMessageButKeepPanel();
+            float delay = UnityEngine.Random.Range(1, 3f);
+            Invoke(nameof(NewPathDelayedItems), delay);
+        }
+
+    }
+
+    private void NewPathDelayedItems()
+    {
+        if (!GameController.Instance.IsTutorialMode)
+        {
+            var sm = StorylineController.Instance.AdvanceToNextStoryMessage();
+            UIController.Instance.Message.DisplayStoryMessage(sm);
+        }
+
         TerminalController.Instance.CreateRandomStartGoalPair();
         PacketController.Instance.GenerateRandomPacket();
     }
