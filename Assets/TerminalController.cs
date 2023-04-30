@@ -41,7 +41,7 @@ public class TerminalController : MonoBehaviour
         {
             TargetTerminalActivated?.Invoke();
             Debug.Log("success!");
-            PathController.Instance.CreateNewPathProblem();
+            //PathController.Instance.CreateNewPathProblem();
         }
     }
 
