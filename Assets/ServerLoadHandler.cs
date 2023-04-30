@@ -26,6 +26,11 @@ public class ServerLoadHandler : MonoBehaviour
 
     private void Awake()
     {
+        _currentMaxLoad = _startingMaxLoad;
+        _timeToHealLoadDamageUnit = 0;
+        _currentLoad = 0;
+        _currentEncryptionStatus = false;
+        IsBroken = false;
         _svh = GetComponent<ServerVisualHandler>();
     }
 

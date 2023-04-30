@@ -49,7 +49,6 @@ public class ToolResourceController : MonoBehaviour
 
     public void PushToolAvailability()
     {
-        Debug.Log("ping");
         for (int i = 0; i < _toolCosts.Length; i++)
         {
             if (_currentResources >= _toolCosts[i])
