@@ -47,6 +47,12 @@ public class FadeHandler : MonoBehaviour
         }
     }
 
+    public void ForceFadeoutWithOrganicDelay()
+    {
+        float delay = UnityEngine.Random.Range(.5f, 3f);
+        Invoke(nameof(FadeOut), delay);
+    }
+
     public void InstaFadeOut()
     {
         for (int i = 0; i < _srTweens.Length; i++)
@@ -97,6 +103,11 @@ public class FadeHandler : MonoBehaviour
         var lvh = GetComponent<LinkVisualHandler>();
         if (lvh) lvh.HasFadedIn = true;
 
+    }
+
+    private void FadeOut()
+    {
+        FadeOut(_fadeDuration);
     }
 
     private void FadeOut(float fadeDuration)

@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     [SerializeField] bool _isTutorialMode;
     public bool IsTutorialMode => _isTutorialMode;
 
+    [SerializeField] bool _isGameOver = false;
+    public bool IsGameOver => _isGameOver;
+
     private void Awake()
     {
         _isTutorialMode = true;
@@ -34,6 +37,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        _isGameOver = false;
         ToolResourceController.Instance.GainResources(20);
 
         if (_isTutorialMode)
@@ -54,5 +58,18 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void EnterGameOver()
+    {
+        _isGameOver = true;
+        UIController.Instance.Message.HideMessage();
+        UIController.Instance.Packet.HidePacketPanel();
+        UIController.Instance.Tool.HideToolPanel();
+        UIController.Instance.Resource.HideResourcePanel();
+        FadeController.Instance.FadeOutEverything();
+
+        Debug.Log("Game over!");
+        //AUDIO play bong of doom;
+        FadeController.Instance.FadeOutEverything();
+    }
 
 }

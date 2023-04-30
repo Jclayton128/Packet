@@ -64,4 +64,12 @@ public class FadeController : MonoBehaviour
             _fadeHandlers.Add(newFadeHandler);
         }
     }
+
+    public void FadeOutEverything()
+    {
+        foreach (var fh in _fadeHandlers)
+        {
+            fh.ForceFadeoutWithOrganicDelay();
+        }
+    }
 }

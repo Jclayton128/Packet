@@ -29,6 +29,7 @@ public class PacketUIC : MonoBehaviour
     Color _pulseColor = Color.clear;
     Color _pulseDim = Color.clear;
     float _pulseFactor;
+    public bool IsTimerArcEnabled => _timerArc.enabled;
 
 
     public void ShowPacketPanel()
@@ -70,6 +71,10 @@ public class PacketUIC : MonoBehaviour
 
     public void SetPacketValue(int value)
     {
+        if (value == 0)
+        {
+            _priorityArc.fillAmount = 0f;
+        }
         if (value == 1)
         {
             _priorityArc.fillAmount = .2f;

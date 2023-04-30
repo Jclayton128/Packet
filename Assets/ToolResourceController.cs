@@ -54,7 +54,10 @@ public class ToolResourceController : MonoBehaviour
         UIController.Instance.Resource.SetResourceSlider(_currentResources/ _maxResources);
         PushToolAvailability();
 
-        //TODO check for game over!
+        if (_currentResources < 0)
+        {
+            GameController.Instance.EnterGameOver();            
+        }
     }
 
     public void PushToolAvailability()

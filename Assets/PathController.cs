@@ -22,6 +22,8 @@ public class PathController : MonoBehaviour
 
     public void CreateNewPathProblem( )
     {
+        if (GameController.Instance.IsGameOver) return;
+
         LinkController.Instance.ResetivateAllLinks();
         ServerController.Instance.ResetivateAllServers();
         TerminalController.Instance.ResetivateAllTerminals();

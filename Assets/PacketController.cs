@@ -42,6 +42,12 @@ public class PacketController : MonoBehaviour
     {
         int value = UnityEngine.Random.Range(_minValue, _maxValue+1);
         float time = UnityEngine.Random.Range(_minTime, _maxTime);
+
+        if (!UIController.Instance.Packet.IsTimerArcEnabled)
+        {
+            time = 600;
+        }
+
         int boolvalue = UnityEngine.Random.Range(0, 8); //0: encrypted, 8 gives a 12.5% encrypted chance
         bool encrypt;
         if (!TutorialController.Instance.IsInTutorialPair && boolvalue == 0)
@@ -91,10 +97,15 @@ public class PacketController : MonoBehaviour
 
     public void LoseCurrentPackage()
     {
-        //TODO negative audio
-        ToolResourceController.Instance.LoseResource(_currentPacket.Value);
-        ClearPacket();
-        PathController.Instance.CreateNewPathProblem();
+
+        if (_currentPacket != null)
+        {
+            //TODO negative audio
+            ToolResourceController.Instance.LoseResource(_currentPacket.Value);
+            ClearPacket();
+            PathController.Instance.CreateNewPathProblem();
+        }
+
     }
 
     public bool GetPacketEncryption()
