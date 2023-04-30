@@ -683,6 +683,7 @@ MonoBehaviour:
   - {fileID: 3938239450353584697}
   - {fileID: 318342244}
   - {fileID: 1459614222}
+  _toolCosts: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1673,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a9423a19ab3b8f4f9d5ecb10c0d7fd6, type: 2}
   - {fileID: 11400000, guid: 191e6a857d5f9e542bf5f559beea1ee2, type: 2}
   - {fileID: 11400000, guid: eb3363a1c28eb064a80f623aebbb4e32, type: 2}
+  - {fileID: 11400000, guid: ebf89f695adf7c347abfdf6b33423252, type: 2}
+  - {fileID: 11400000, guid: f925c78e292517a4b928519d89250a26, type: 2}
+  - {fileID: 11400000, guid: 18a0f38d3c54ffd499829d2cdfc3a72f, type: 2}
+  - {fileID: 11400000, guid: ec3ed80287c168c46a9725fdfa022ac8, type: 2}
+  - {fileID: 11400000, guid: 32b3be09934b0f742b33ebd5952f0363, type: 2}
+  - {fileID: 11400000, guid: 97611b14308212f499ab3006ed9afd78, type: 2}
+  - {fileID: 11400000, guid: 76afc95a7d85cda4fa579747ea90577e, type: 2}
+  - {fileID: 11400000, guid: dcbbaf8b9ac124a4ba12faee080fc5e1, type: 2}
+  - {fileID: 11400000, guid: c20194a257821064abde3b0ea01303cc, type: 2}
   _currentPacketMessage: {fileID: 0}
   _currentStepToAdvance: 0
   _isInTutorialPair: 0

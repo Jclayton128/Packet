@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tut_6.1
   m_EditorClassIdentifier: 
   _sendingImage: {fileID: 21300000, guid: 9d375c43b4b5ced4ab19e55bd6aaffa0, type: 3}
-  _message: Work efficiently. Packets must arrive before its timer runs out.
-  _hint: Deliver Another Packet
-  _stepToAdvance: 0
+  _message: Work efficiently. A packet must arrive before its timer runs out.
+  _hint: Click Here
+  _stepToAdvance: 2
   _invokesTutorialPair: 0
   _specialThing: 1
