@@ -8,8 +8,8 @@ public class PacketController : MonoBehaviour
     public static PacketController Instance;
 
     //settings
-    [SerializeField] int _minValue = 3;
-    [SerializeField] int _maxValue = 9;
+    [SerializeField] int _minValue = 1;
+    [SerializeField] int _maxValue = 5;
     [SerializeField] float _minTime = 10f; //seconds
     [SerializeField] float _maxTime = 40f;
     [SerializeField] float _moveCostMultiplier = 1f;
