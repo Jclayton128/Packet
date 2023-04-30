@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance;
 
     //state
-    bool _isTutorialMode;
+    [SerializeField] bool _isTutorialMode;
     public bool IsTutorialMode => _isTutorialMode;
 
     private void Awake()

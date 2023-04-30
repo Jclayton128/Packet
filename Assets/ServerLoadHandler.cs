@@ -20,6 +20,7 @@ public class ServerLoadHandler : MonoBehaviour
     float _timeToHealLoadDamageUnit;
     int _currentLoad;
     bool _currentEncryptionStatus;
+    public bool HasEncryption => _currentEncryptionStatus;
     LoadStatus _currentLoadStatus;
     public bool IsBroken;//{ get; private set; }
 

@@ -1653,6 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e93f18e52732e468a1a25410195bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isTutorialMode: 0
 --- !u!114 &1393333181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,6 +1670,7 @@ MonoBehaviour:
   _maxValue: 9
   _minTime: 10
   _maxTime: 40
+  _moveCostMultiplier: 0.5
 --- !u!114 &1393333182
 MonoBehaviour:
   m_ObjectHideFlags: 0

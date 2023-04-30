@@ -109,6 +109,27 @@ public class SelectionHandler : MonoBehaviour
         CanBeSelected = false;
         HasBeenPreviouslyActivated = true;
 
+        //Check if packet is encrypted and if this server is encrypted.
+        //if mismatch, then roll the dice to lose or not.
+
+        if (_slh != null && PacketController.Instance.GetPacketEncryption())
+        {
+            if ( _slh.HasEncryption)
+            {
+                //no problems
+            }
+            else
+            {
+                float roll = UnityEngine.Random.Range(0, 1f);
+                if (roll <= PacketController.Instance.EncryptionPenaltyChance)
+                {
+                    //TODO show some kind of decryption-themed penalty effect here.
+                    Debug.Log("Decrypted!!!");
+                    PacketController.Instance.LoseCurrentPackage();
+                }
+            }
+        }
+
         BroadcastMessage("Activate");
         NodeActivated?.Invoke(this);
 

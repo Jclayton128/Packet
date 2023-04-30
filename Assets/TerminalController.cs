@@ -106,6 +106,8 @@ public class TerminalController : MonoBehaviour
         //    term.GetComponent<SelectionHandler>().StartResetivate();
         //}
 
+        PacketController.Instance.GenerateRandomPacket();
+
         var start = _tutorialStartTerminal;
         SelectionHandler sh = start.GetComponent<SelectionHandler>();
         sh.StartActivationRemotely();

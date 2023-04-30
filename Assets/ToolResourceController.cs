@@ -11,10 +11,7 @@ public class ToolResourceController : MonoBehaviour
 
 
     //state
-    int _currentResources;
-    
-
-
+    int _currentResources;  
 
     private void Awake()
     {

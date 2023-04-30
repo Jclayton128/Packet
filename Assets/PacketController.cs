@@ -13,6 +13,8 @@ public class PacketController : MonoBehaviour
     [SerializeField] float _minTime = 10f; //seconds
     [SerializeField] float _maxTime = 40f;
     [SerializeField] float _moveCostMultiplier = 1f;
+    [SerializeField] float _encryptionPenaltyChance = 0.3f;
+    public float EncryptionPenaltyChance => _encryptionPenaltyChance;
 
     //state
     Packet _currentPacket;
@@ -40,9 +42,12 @@ public class PacketController : MonoBehaviour
     {
         int value = UnityEngine.Random.Range(_minValue, _maxValue+1);
         float time = UnityEngine.Random.Range(_minTime, _maxTime);
-        int boolvalue = UnityEngine.Random.Range(0, 4); //0: encrypted, 8 gives a 12.5% encrypted chance
+        int boolvalue = UnityEngine.Random.Range(0, 8); //0: encrypted, 8 gives a 12.5% encrypted chance
         bool encrypt;
-        if (boolvalue == 0) encrypt = true;
+        if (!TutorialController.Instance.IsInTutorialPair && boolvalue == 0)
+        {
+            encrypt = true;
+        }
         else encrypt = false;
 
         Packet packet = new Packet(value, encrypt, time);
@@ -83,6 +88,14 @@ public class PacketController : MonoBehaviour
         PathController.Instance.CreateNewPathProblem();
     }
 
+    public bool GetPacketEncryption()
+    {
+        if (_currentPacket != null && _currentPacket.Encrypted)
+        {
+            return true;
+        }
+        else return false;
+    }
 }
 
 public class Packet
