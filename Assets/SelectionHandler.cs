@@ -54,6 +54,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (GameController.Instance.IsGameOver) return;
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         
         if (ToolResourceController.Instance.CurrentTool == 0)
@@ -91,6 +92,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameController.Instance.IsGameOver) return;
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         if (ToolResourceController.Instance.CurrentTool == 0)
         {
@@ -183,6 +185,7 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (GameController.Instance.IsGameOver) return;
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         _isSelected = false;
         BroadcastMessage("Deselect");

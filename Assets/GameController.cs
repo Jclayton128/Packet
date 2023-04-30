@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
             UIController.Instance.Packet.ShowPacketPanel();
             UIController.Instance.Tool.ShowToolPanel();
             UIController.Instance.Resource.ShowResourcePanel();
+            UIController.Instance.Endgame.HideEndgamePanel();
             PathController.Instance.CreateFirstPathProblem();
             ServerController.Instance.ApplyEncryptionToStartingServers();
         }
@@ -70,6 +71,14 @@ public class GameController : MonoBehaviour
         Debug.Log("Game over!");
         //AUDIO play bong of doom;
         FadeController.Instance.FadeOutEverything();
+
+        Invoke(nameof(ShowEndgamePanel_Delay),3f);
+        //UIController.Instance.Endgame.ShowEndgamePanel();
+    }
+
+    private void ShowEndgamePanel_Delay()
+    {
+        UIController.Instance.Endgame.ShowEndgamePanel();
     }
 
 }

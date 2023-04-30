@@ -21,6 +21,9 @@ public class UIController : MonoBehaviour
     ResourceUIC _resource;
     public ResourceUIC Resource => _resource;
 
+    EndgameUIC _endgame;
+    public EndgameUIC Endgame => _endgame;
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +31,7 @@ public class UIController : MonoBehaviour
         _packet = GetComponent<PacketUIC>();
         _tool = GetComponent<ToolUIC>();
         _resource = GetComponent<ResourceUIC>();
+        _endgame = GetComponent<EndgameUIC>();
     }
 
     private void Start()
@@ -36,5 +40,6 @@ public class UIController : MonoBehaviour
         _packet.HidePacketPanel();
         _tool.HideToolPanel();
         _resource.HideResourcePanel();
+        _endgame.HideEndgamePanel();
     }
 }

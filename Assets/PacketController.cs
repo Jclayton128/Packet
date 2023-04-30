@@ -19,7 +19,7 @@ public class PacketController : MonoBehaviour
     //state
     Packet _currentPacket;
     float _timeRemainingForCurrentPacket;
-
+    int _packetsDelivered;
     private void Awake()
     {
         Instance = this;
@@ -29,6 +29,7 @@ public class PacketController : MonoBehaviour
     {
         TerminalController.Instance.TargetTerminalActivated += GainCurrentPacket;
         ServerController.Instance.NodeActivated += HandleNodeJump;
+        _packetsDelivered = 0;
     }
 
     private void HandleNodeJump(SelectionHandler arg1, SelectionHandler arg2)
@@ -89,7 +90,8 @@ public class PacketController : MonoBehaviour
     public void GainCurrentPacket()
     {
         //TODO chaching audio
-
+        _packetsDelivered++;
+        UIController.Instance.Endgame.SetPacketCounter(_packetsDelivered);
         ToolResourceController.Instance.GainResources(_currentPacket.Value);
         ClearPacket();
         PathController.Instance.CreateNewPathProblem();
