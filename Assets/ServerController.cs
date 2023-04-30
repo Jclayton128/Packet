@@ -87,4 +87,12 @@ public class ServerController : MonoBehaviour
             server.EncryptServer();
         }
     }
+
+    public void RecheckCurrentActivatedNodesNeighbors()
+    {
+        if (_currentActivatedNode)
+        {
+            _currentActivatedNode.StartActivationRemotely(false);
+        }
+    }
 }

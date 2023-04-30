@@ -67,7 +67,7 @@ public class SelectionHandler : MonoBehaviour
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         if (_isSelected)
         {
-            StartActivation();
+            StartActivation(true);
         }
     }
 
@@ -97,13 +97,13 @@ public class SelectionHandler : MonoBehaviour
     }
 
 
-    public void StartActivationRemotely()
+    public void StartActivationRemotely(bool checkEncryption)
     {
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
-        StartActivation();
+        StartActivation(checkEncryption);
     }
 
-    private void StartActivation()
+    private void StartActivation(bool checkEncryption)
     {
         IsActivated = true;
         CanBeSelected = false;
@@ -112,7 +112,8 @@ public class SelectionHandler : MonoBehaviour
         //Check if packet is encrypted and if this server is encrypted.
         //if mismatch, then roll the dice to lose or not.
 
-        if (_slh != null && PacketController.Instance.GetPacketEncryption())
+        if (checkEncryption && _slh != null &&
+            PacketController.Instance.GetPacketEncryption())
         {
             if ( _slh.HasEncryption)
             {

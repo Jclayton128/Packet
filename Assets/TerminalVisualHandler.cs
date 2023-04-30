@@ -27,7 +27,7 @@ public class TerminalVisualHandler : VisualHandler
     {
         if (_sh.CanBeSelected)
         {
-            _selection.color = ColorController.Instance.SelectableNode;
+            _selection.color = ColorController.Instance.SelectedNode;
         }
         else
         {
@@ -37,8 +37,15 @@ public class TerminalVisualHandler : VisualHandler
 
     public override void Deselect()
     {
-        _selection.enabled = false;
-        //_selection.color = Color.clear;
+        if (_sh.CanBeSelected)
+        {
+            _selection.color = ColorController.Instance.SelectableNode;
+        }
+        else
+        {
+            //_selectionSprite.enabled = false;
+            _selection.color = Color.clear;
+        }
     }
 
     public override void Selectable()

@@ -61,7 +61,7 @@ public class TerminalController : MonoBehaviour
         int rand = UnityEngine.Random.Range(0, _terminals.Count);
         var start = _terminals[rand];
         SelectionHandler sh = start.GetComponent<SelectionHandler>();
-        sh.StartActivationRemotely();
+        sh.StartActivationRemotely(true);
         _startTerminal = sh;
 
         int breaker = 10;
@@ -110,7 +110,7 @@ public class TerminalController : MonoBehaviour
 
         var start = _tutorialStartTerminal;
         SelectionHandler sh = start.GetComponent<SelectionHandler>();
-        sh.StartActivationRemotely();
+        sh.StartActivationRemotely(false);
         _startTerminal = sh;
 
         _targetTerminal = _tutorialTargetTerminal.GetComponent<SelectionHandler>();

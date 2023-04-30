@@ -62,7 +62,7 @@ public class ServerLoadHandler : MonoBehaviour
     private void PushVisuals()
     {
         if (IsBroken) _svh.DepictBrokenStatus();
-        else _svh.Deactivate();
+        //else  _svh.Deactivate();
 
         _svh.DepictLoadStatus(_currentLoadStatus, _currentLoad, _currentMaxLoad);
     }
@@ -122,6 +122,8 @@ public class ServerLoadHandler : MonoBehaviour
         IsBroken = false;
         _currentLoad = 0;
         _timeToHealLoadDamageUnit = 0;
+        _currentLoadStatus = DetermineLoadStatus();
+        //TODO force a reselection if 
         PushVisuals();
     }
 
