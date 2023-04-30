@@ -18,12 +18,16 @@ public class UIController : MonoBehaviour
     ToolUIC _tool;
     public ToolUIC Tool => _tool;
 
+    ResourceUIC _resource;
+    public ResourceUIC Resource => _resource;
+
     private void Awake()
     {
         Instance = this;
         _message = GetComponent<MessageUIC>();
         _packet = GetComponent<PacketUIC>();
         _tool = GetComponent<ToolUIC>();
+        _resource = GetComponent<ResourceUIC>();
     }
 
     private void Start()
@@ -31,5 +35,6 @@ public class UIController : MonoBehaviour
         _message.HideMessage();
         _packet.HidePacketPanel();
         _tool.HideToolPanel();
+        _resource.HideResourcePanel();
     }
 }

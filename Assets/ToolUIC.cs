@@ -8,13 +8,12 @@ using System;
 public class ToolUIC : MonoBehaviour
 {
     [SerializeField] UIElementDriver _toolPanel = null;
-    [SerializeField] TextMeshProUGUI _resourcesTMP = null;
+
     [SerializeField] Button[] _toolButtons = null;
     [SerializeField] TextMeshProUGUI[] _toolCosts = null;
 
     private void Start()
     {
-        SetResourceAmount(0);
         _toolButtons[0].Select();
         ToolResourceController.Instance.HandleToolSelection(0);
     }
@@ -29,10 +28,6 @@ public class ToolUIC : MonoBehaviour
         _toolPanel.ShowHide(false);
     }
 
-    public void SetResourceAmount(int amount)
-    {
-        _resourcesTMP.text = amount.ToString();
-    }
 
     public void SetToolCost(int tool, int cost)
     {
@@ -80,6 +75,11 @@ public class ToolUIC : MonoBehaviour
         {
             SelectTool(3);
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIController.Instance.Message.HandleMessagePanelClicked();
         }
     }
 

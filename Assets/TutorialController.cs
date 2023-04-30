@@ -120,6 +120,10 @@ public class TutorialController : MonoBehaviour
                 UIController.Instance.Message.ClearStoryMessageButKeepPanel();
                 ServerController.Instance.SetHealTime(false);
                 break;
+
+            case TutorialMessage.SpecialThings.ShowResourcePanel:
+                UIController.Instance.Resource.ShowResourcePanel();
+                break;
         }
     }
 

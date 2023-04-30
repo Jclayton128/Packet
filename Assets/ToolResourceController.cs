@@ -8,7 +8,7 @@ public class ToolResourceController : MonoBehaviour
 
     //settings
     [SerializeField] int[] _toolCosts = new int[4];
-
+    float _maxResources = 50f;
 
     //state
     int _currentResources;
@@ -24,7 +24,6 @@ public class ToolResourceController : MonoBehaviour
 
     private void Start()
     {
-        UIController.Instance.Tool.SetResourceAmount(_currentResources);
         SetToolCosts();
         PushToolAvailability();
     }
@@ -40,15 +39,22 @@ public class ToolResourceController : MonoBehaviour
     public void GainResources(int amountToGain)
     {
         _currentResources += amountToGain;
-        UIController.Instance.Tool.SetResourceAmount(_currentResources);
+        UIController.Instance.Resource.SetResourceSlider(_currentResources / _maxResources);
         PushToolAvailability();
     }
 
     public void LoseResource(int amountToLose)
     {
+
         _currentResources -= amountToLose;
-        UIController.Instance.Tool.SetResourceAmount(_currentResources);
+        if (GameController.Instance.IsTutorialMode)
+        {
+            _currentResources = Mathf.Clamp(_currentResources, 20, 99);
+        }
+        UIController.Instance.Resource.SetResourceSlider(_currentResources/ _maxResources);
         PushToolAvailability();
+
+        //TODO check for game over!
     }
 
     public void PushToolAvailability()

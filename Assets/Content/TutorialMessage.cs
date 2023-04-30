@@ -19,7 +19,8 @@ public class TutorialMessage : ScriptableObject
         HideMessagePanel,
         ShowPacketPanel,
         ShowToolPanel,
-        EndTutorial
+        EndTutorial,
+        ShowResourcePanel
     }
 
 [SerializeField] Sprite _sendingImage = null;

@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        ToolResourceController.Instance.GainResources(20);
+
         if (_isTutorialMode)
         {
             TutorialController.Instance.StartTutorial();
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour
             UIController.Instance.Message.DisplayStoryMessage(sm);
             UIController.Instance.Packet.ShowPacketPanel();
             UIController.Instance.Tool.ShowToolPanel();
+            UIController.Instance.Resource.ShowResourcePanel();
             PathController.Instance.CreateFirstPathProblem();
             ServerController.Instance.ApplyEncryptionToStartingServers();
         }
