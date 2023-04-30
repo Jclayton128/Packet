@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3aa4800a1de4844b9229d766fc9c06b, type: 3}
   m_Name: LowEnergy
   m_EditorClassIdentifier: 
-  _sendingImage: {fileID: 21300000, guid: 14e93e76748b0ca49aad451c6703c1f7, type: 3}
+  _sendingImage: {fileID: 21300000, guid: d3585e42e524c7347b04c96fe92451bb, type: 3}
   _from: 
   _to: 
   _message: Low on energy? Our products will enhance your life 10x! Call now for

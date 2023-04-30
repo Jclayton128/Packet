@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3aa4800a1de4844b9229d766fc9c06b, type: 3}
   m_Name: NewGame
   m_EditorClassIdentifier: 
-  _sendingImage: {fileID: 0}
+  _sendingImage: {fileID: 21300000, guid: 558c4039e990d364a8c7786ba08a8cc1, type: 3}
   _from: Defrag
   _to: LD53 Player
   _message: Deliver network packets. Help the right people. Thanks for playing!

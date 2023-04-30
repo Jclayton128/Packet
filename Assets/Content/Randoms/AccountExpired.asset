@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3aa4800a1de4844b9229d766fc9c06b, type: 3}
   m_Name: AccountExpired
   m_EditorClassIdentifier: 
-  _sendingImage: {fileID: 0}
+  _sendingImage: {fileID: 21300000, guid: 32ab47b7e9caff943bb783a564e57bed, type: 3}
   _from: 
   _to: 
   _message: Hello, we show your account is expired. Visit our site to reactivate

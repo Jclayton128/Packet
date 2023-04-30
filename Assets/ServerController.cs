@@ -67,7 +67,7 @@ public class ServerController : MonoBehaviour
 
     private void HandleActivatedNode(SelectionHandler newlyActivatedNode)
     {
-        Debug.Log($"responding to activated node {newlyActivatedNode}");
+        //Debug.Log($"responding to activated node {newlyActivatedNode}");
         if (_currentActivatedNode == null)
         {
             _currentActivatedNode = newlyActivatedNode;
