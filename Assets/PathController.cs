@@ -11,9 +11,17 @@ public class PathController : MonoBehaviour
         Instance = this;
     }
 
-    public void CreateNewPathProblem()
+    public void CreateFirstPathProblem()
     {
-        Debug.Log("Creating new path problem");
+        LinkController.Instance.ResetivateAllLinks();
+        ServerController.Instance.ResetivateAllServers();
+        TerminalController.Instance.ResetivateAllTerminals();
+        TerminalController.Instance.CreateRandomStartGoalPair();
+        PacketController.Instance.GenerateRandomPacket();
+    }
+
+    public void CreateNewPathProblem( )
+    {
         LinkController.Instance.ResetivateAllLinks();
         ServerController.Instance.ResetivateAllServers();
         TerminalController.Instance.ResetivateAllTerminals();

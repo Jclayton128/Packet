@@ -21,6 +21,13 @@ public class ServerController : MonoBehaviour
     public SelectionHandler _previousActivatedNode;
     public SelectionHandler _currentActivatedNode;
 
+
+    [SerializeField] float _tutorialHealTime = 0.5f;
+    [SerializeField] float _regularHealTime = 3f;
+
+    float _timeRequiredToHealLoad;
+    public float HealLoadTimeCost => _timeRequiredToHealLoad;
+
     private void Awake()
     {
         _previousActivatedNode = null;
@@ -99,5 +106,17 @@ public class ServerController : MonoBehaviour
         }
     }
 
+    public void SetHealTime(bool isInTutorial)
+    {
+        if (isInTutorial)
+        {
+            _timeRequiredToHealLoad = _tutorialHealTime;
+        }
+        else
+        {
+            _timeRequiredToHealLoad = _regularHealTime;
+        }
+    }
+    
 
 }

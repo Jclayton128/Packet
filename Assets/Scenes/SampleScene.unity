@@ -1989,6 +1989,8 @@ MonoBehaviour:
   - {fileID: 1820022365}
   _previousActivatedNode: {fileID: 0}
   _currentActivatedNode: {fileID: 0}
+  _tutorialHealTime: 0.5
+  _regularHealTime: 6
 --- !u!114 &1393333178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,6 +2100,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76afc95a7d85cda4fa579747ea90577e, type: 2}
   - {fileID: 11400000, guid: dcbbaf8b9ac124a4ba12faee080fc5e1, type: 2}
   - {fileID: 11400000, guid: c20194a257821064abde3b0ea01303cc, type: 2}
+  - {fileID: 11400000, guid: 06bdac10642af7d48a7738dd90c76e2a, type: 2}
   _currentPacketMessage: {fileID: 0}
   _currentStepToAdvance: 0
   _isInTutorialPair: 0
@@ -2127,6 +2130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5c396be39f1de4092338122dd2cc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _newGameStoryMessage: {fileID: 11400000, guid: 8b63ad55c70c2214ea72d1da8107fb74, type: 2}
   _messagesRebel: []
   _messagesGov: []
   _messagesAI: []

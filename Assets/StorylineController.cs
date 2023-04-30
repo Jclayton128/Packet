@@ -6,6 +6,8 @@ public class StorylineController : MonoBehaviour
 {
     public static StorylineController Instance;
 
+    [SerializeField] StoryMessage _newGameStoryMessage = null;
+
     [SerializeField] StoryMessage[] _messagesRebel = null;
     [SerializeField] StoryMessage[] _messagesGov = null;
 
@@ -16,6 +18,7 @@ public class StorylineController : MonoBehaviour
 
     [SerializeField] string[] _randomRecipients;
     [SerializeField] string[] _randomSenders;
+
 
     //state
     List<StoryMessage> _unusedRandomMessages = new List<StoryMessage>();
@@ -77,5 +80,10 @@ public class StorylineController : MonoBehaviour
     {
         int rand = UnityEngine.Random.Range(0, _randomRecipients.Length);
         return _randomRecipients[rand];
+    }
+
+    public StoryMessage PullNewGameMessage()
+    {
+        return _newGameStoryMessage;
     }
 }

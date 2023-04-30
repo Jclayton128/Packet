@@ -56,4 +56,11 @@ public class PacketUIC : MonoBehaviour
     {
         _timerArc.fillAmount = factor;
     }
+
+    public void ClearPacketPanel()
+    {
+        SetPacketTiming(0);
+        SetEncryptionStatus(false);
+        SetPacketValue(0);
+    }
 }

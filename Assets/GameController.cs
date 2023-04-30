@@ -22,6 +22,11 @@ public class GameController : MonoBehaviour
         _isTutorialMode = !_isTutorialMode;
     }
 
+    public void EndTutorialMode()
+    {
+        _isTutorialMode = false;
+    }
+
     public void InitiateDelayedStartGame()
     {
         Invoke(nameof(StartGame), 2.5f);
@@ -32,13 +37,16 @@ public class GameController : MonoBehaviour
         if (_isTutorialMode)
         {
             TutorialController.Instance.StartTutorial();
+            ServerController.Instance.SetHealTime(true);
         }
         else
         {
-            UIController.Instance.Message.DisplayTutorialMessage("New Game!", null, "play!");
+            ServerController.Instance.SetHealTime(false);
+            var sm = StorylineController.Instance.PullNewGameMessage();
+            UIController.Instance.Message.DisplayStoryMessage(sm);
             UIController.Instance.Packet.ShowPacketPanel();
             UIController.Instance.Tool.ShowToolPanel();
-            PathController.Instance.CreateNewPathProblem();
+            PathController.Instance.CreateFirstPathProblem();
             ServerController.Instance.ApplyEncryptionToStartingServers();
         }
     }

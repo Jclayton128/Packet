@@ -12,7 +12,6 @@ public class ServerLoadHandler : MonoBehaviour
 
     //settings
     [SerializeField] int _startingMaxLoad = 2;
-    [SerializeField] float _timeRequiredToHealLoadDamageUnit = 5f;
     [SerializeField] bool _startEncryptionStatus = false;
 
     //state
@@ -53,7 +52,7 @@ public class ServerLoadHandler : MonoBehaviour
         {
             _currentLoad--;
             _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);
-            _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
+            _timeToHealLoadDamageUnit = Time.time + ServerController.Instance.HealLoadTimeCost;
             _currentLoadStatus = DetermineLoadStatus();
             if (_currentLoadStatus == LoadStatus.Broken) IsBroken = true;
             PushVisuals();
@@ -95,7 +94,7 @@ public class ServerLoadHandler : MonoBehaviour
     {
         ServerActivated?.Invoke(this);
         _currentLoad++;
-        _timeToHealLoadDamageUnit = Time.time + _timeRequiredToHealLoadDamageUnit;
+        _timeToHealLoadDamageUnit = Time.time +ServerController.Instance.HealLoadTimeCost;
         _currentLoadStatus = DetermineLoadStatus();
         if (_currentLoadStatus == LoadStatus.Broken) IsBroken = true;
         PushVisuals();

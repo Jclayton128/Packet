@@ -111,6 +111,15 @@ public class TutorialController : MonoBehaviour
             case TutorialMessage.SpecialThings.ShowToolPanel:
                 UIController.Instance.Tool.ShowToolPanel();
                 break;
+
+            case TutorialMessage.SpecialThings.EndTutorial:
+                _isInTutorialPair = false;
+                GameController.Instance.EndTutorialMode();
+                var sm = StorylineController.Instance.PullNewGameMessage();
+                UIController.Instance.Message.DisplayStoryMessage(sm);
+                UIController.Instance.Message.ClearStoryMessageButKeepPanel();
+                ServerController.Instance.SetHealTime(false);
+                break;
         }
     }
 

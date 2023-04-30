@@ -57,6 +57,12 @@ public class PacketController : MonoBehaviour
         UIController.Instance.Packet.SetEncryptionStatus(_currentPacket.Encrypted);
     }
 
+    public void ClearPacket()
+    {
+        _currentPacket = null;
+        UIController.Instance.Packet.ClearPacketPanel();
+    }
+
     private void Update()
     {
         if (_currentPacket != null)
@@ -77,7 +83,9 @@ public class PacketController : MonoBehaviour
     public void GainCurrentPacket()
     {
         //TODO chaching audio
+
         ToolResourceController.Instance.GainResources(_currentPacket.Value);
+        ClearPacket();
         PathController.Instance.CreateNewPathProblem();
     }
 
@@ -85,6 +93,7 @@ public class PacketController : MonoBehaviour
     {
         //TODO negative audio
         ToolResourceController.Instance.LoseResource(_currentPacket.Value);
+        ClearPacket();
         PathController.Instance.CreateNewPathProblem();
     }
 
