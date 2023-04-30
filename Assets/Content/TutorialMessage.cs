@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Packet Message")]
-public class PacketMessage : ScriptableObject
+[CreateAssetMenu(fileName ="Tutorial Message")]
+public class TutorialMessage : ScriptableObject
 {
     public enum StepToAdvance { 
         TerminatePacket, ActivateServer, ClickMessagePanel, UpgradeCapacity,

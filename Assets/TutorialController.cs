@@ -7,12 +7,12 @@ public class TutorialController : MonoBehaviour
 {
     public static TutorialController Instance;
 
-    [SerializeField] PacketMessage[] _tutorialMessages = null;
+    [SerializeField] TutorialMessage[] _tutorialMessages = null;
 
     //state
     int _currentTutorialStep;
-    [SerializeField] PacketMessage _currentPacketMessage;
-    [SerializeField]  PacketMessage.StepToAdvance _currentStepToAdvance;
+    [SerializeField] TutorialMessage _currentPacketMessage;
+    [SerializeField]  TutorialMessage.StepToAdvance _currentStepToAdvance;
     [SerializeField] bool _isInTutorialPair;
     public bool IsInTutorialPair => _isInTutorialPair;
 
@@ -55,7 +55,7 @@ public class TutorialController : MonoBehaviour
                 TerminalController.Instance.SetupTutorialPair();
             }
             FadeController.Instance.IncrementFadeInPhase();
-            UIController.Instance.Message.DisplayMessage(
+            UIController.Instance.Message.DisplayTutorialMessage(
                 _currentPacketMessage.Message,
                 _currentPacketMessage.SendingImage,
                 _currentPacketMessage.Hint);
@@ -68,47 +68,47 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    private void ProcessSpecialThings(PacketMessage.SpecialThings currentPacketMessage)
+    private void ProcessSpecialThings(TutorialMessage.SpecialThings currentPacketMessage)
     {
         switch (currentPacketMessage)
         {
-            case PacketMessage.SpecialThings.None:
+            case TutorialMessage.SpecialThings.None:
                 break;
 
-            case PacketMessage.SpecialThings.ShowTimer:
+            case TutorialMessage.SpecialThings.ShowTimer:
                 //fragile! must be called before other packet panel showings            
                 UIController.Instance.Packet.ShowHideTimer(true); 
                 break;
 
-            case PacketMessage.SpecialThings.ShowValue:
+            case TutorialMessage.SpecialThings.ShowValue:
                 UIController.Instance.Packet.ShowHideValue(true);
                 break;
 
-            case PacketMessage.SpecialThings.ShowEncryption:
+            case TutorialMessage.SpecialThings.ShowEncryption:
                 UIController.Instance.Packet.ShowHideEncryption(true);
                 UIController.Instance.Packet.SetEncryptionStatus(true);
                 break;
 
-            case PacketMessage.SpecialThings.SetupStartTutorialTerminals:
+            case TutorialMessage.SpecialThings.SetupStartTutorialTerminals:
                 TerminalController.Instance.SetStartTutorialTerminalAsGreen();
                 break;
 
-            case PacketMessage.SpecialThings.SetupTargetTutorialTerminals:
+            case TutorialMessage.SpecialThings.SetupTargetTutorialTerminals:
                 TerminalController.Instance.SetTargetTutorialTerminalAsBlue();
                 break;
 
-            case PacketMessage.SpecialThings.EncryptServers:
+            case TutorialMessage.SpecialThings.EncryptServers:
                 ServerController.Instance.ApplyEncryptionToStartingServers();
                 break;            
             
-            case PacketMessage.SpecialThings.ShowPacketPanel:
+            case TutorialMessage.SpecialThings.ShowPacketPanel:
                 UIController.Instance.Packet.ShowPacketPanel();
                 UIController.Instance.Packet.ShowHideTimer(false);
                 UIController.Instance.Packet.ShowHideValue(false);
                 UIController.Instance.Packet.ShowHideEncryption(false);
                 break;
 
-            case PacketMessage.SpecialThings.ShowToolPanel:
+            case TutorialMessage.SpecialThings.ShowToolPanel:
                 UIController.Instance.Tool.ShowToolPanel();
                 break;
         }
@@ -117,7 +117,7 @@ public class TutorialController : MonoBehaviour
     public void HandlePossibleAdvancementViaClick()
     {
         if (!GameController.Instance.IsTutorialMode) return;
-        if (_currentStepToAdvance == PacketMessage.StepToAdvance.ClickMessagePanel)
+        if (_currentStepToAdvance == TutorialMessage.StepToAdvance.ClickMessagePanel)
         {
             AdvanceTutorial();
         }
@@ -126,7 +126,7 @@ public class TutorialController : MonoBehaviour
     public void HandlePossibleAdvancementViaServerActivation(object n, object m)
     {
         if (!GameController.Instance.IsTutorialMode) return;
-        if (_currentStepToAdvance == PacketMessage.StepToAdvance.ActivateServer)
+        if (_currentStepToAdvance == TutorialMessage.StepToAdvance.ActivateServer)
         {
             AdvanceTutorial();
         }
@@ -135,7 +135,7 @@ public class TutorialController : MonoBehaviour
     public void HandlePossibleAdvancementViaPacketSuccess()
     {
         if (!GameController.Instance.IsTutorialMode) return;
-        if (_currentStepToAdvance == PacketMessage.StepToAdvance.TerminatePacket)
+        if (_currentStepToAdvance == TutorialMessage.StepToAdvance.TerminatePacket)
         {
             AdvanceTutorial();
             _isInTutorialPair = false;

@@ -13,6 +13,9 @@ public class PathController : MonoBehaviour
 
     public void CreateNewPathProblem()
     {
+        var sm = StorylineController.Instance.GenerateRandomStoryMessage();
+        UIController.Instance.Message.DisplayStoryMessage(sm);
+
         LinkController.Instance.ResetivateAllLinks();
         ServerController.Instance.ResetivateAllServers();
         TerminalController.Instance.ResetivateAllTerminals();

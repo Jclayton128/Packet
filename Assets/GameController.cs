@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            UIController.Instance.Message.DisplayMessage("New Game!", null, "play!");
+            UIController.Instance.Message.DisplayTutorialMessage("New Game!", null, "play!");
             UIController.Instance.Packet.ShowPacketPanel();
             UIController.Instance.Tool.ShowToolPanel();
             PathController.Instance.CreateNewPathProblem();
