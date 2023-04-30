@@ -13,6 +13,7 @@ public class MessageUIC : MonoBehaviour
     [SerializeField] TextMeshProUGUI _messageTMP = null;
     [SerializeField] TextMeshProUGUI _hintTMP = null;
     [SerializeField] Image _messageIcon = null;
+    [SerializeField] Image _dividerLine = null;
 
     [SerializeField] TextMeshProUGUI _toStatic = null;
     [SerializeField] TextMeshProUGUI _fromStatic = null;
@@ -33,7 +34,7 @@ public class MessageUIC : MonoBehaviour
         _toDynamic.enabled = false;
         _fromDynamic.enabled = false;
         _bodyDynamic.enabled = false;
-
+        _dividerLine.enabled = false;
 
         _messageTMP.text = messageText;
         if (sprite != null)
@@ -65,6 +66,7 @@ public class MessageUIC : MonoBehaviour
         _toDynamic.enabled = true;
         _fromDynamic.enabled = true;
         _bodyDynamic.enabled = true;
+        _dividerLine.enabled = true;
 
         _toDynamic.text = message.To;
         _fromDynamic.text = message.From;

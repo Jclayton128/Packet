@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18431373, g: 0.5372549, b: 0.78431374, a: 0.6784314}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -107,10 +107,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 81e7e7c1cd7e98647873cdbb5a301327, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 48558e7f477497a468dca223fa10caca, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 613a7a134345e244fa2f7139c8aae534, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: f216121750b51b741b9959963a90dfb6, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -131,7 +131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1010335948696146451, guid: 7b4d063189bc8fa4f99b5da277e94b7f, type: 3}
       propertyPath: m_fontSize
-      value: 46.2
+      value: 57.65
       objectReference: {fileID: 0}
     - target: {fileID: 1010335948696146451, guid: 7b4d063189bc8fa4f99b5da277e94b7f, type: 3}
       propertyPath: m_margin.w
