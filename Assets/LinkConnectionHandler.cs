@@ -60,6 +60,7 @@ public class LinkConnectionHandler : MonoBehaviour
     public void ResetivateLink()
     {
         HasBeenActivated = false;
+        GetComponent<LinkVisualHandler>().HasFadedIn = true;
         BroadcastMessage("Resetivate");
     }
 

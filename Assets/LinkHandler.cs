@@ -84,6 +84,19 @@ public class LinkHandler : MonoBehaviour
         _neighborTerminals.Clear();
     }
 
+    public void RefreshNeighborSelectability()
+    {
+        foreach (var neighbor in _neighborServers)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.ToggleSelectability(true); //if I am activated, all neighbors  become selectable
+        }
+        foreach (var neighbor in _neighborTerminals)
+        {
+            var sh = neighbor.GetComponent<SelectionHandler>();
+            sh.ToggleSelectability(true);
+        }
+    }
 
     public void Activate()
     {

@@ -51,7 +51,7 @@ public class ServerController : MonoBehaviour
             SelectionHandler sh = terminal.GetComponent<SelectionHandler>();
             sh.NodeActivated += HandleActivatedNode;
         }
-        foreach (var server in ServerController.Instance.Servers)
+        foreach (var server in _servers)
         {
             SelectionHandler sh = server.GetComponent<SelectionHandler>();
             sh.NodeActivated += HandleActivatedNode;
@@ -60,6 +60,7 @@ public class ServerController : MonoBehaviour
 
     private void HandleActivatedNode(SelectionHandler newlyActivatedNode)
     {
+        Debug.Log($"responding to activated node {newlyActivatedNode}");
         if (_currentActivatedNode == null)
         {
             _currentActivatedNode = newlyActivatedNode;
@@ -74,6 +75,8 @@ public class ServerController : MonoBehaviour
 
     public void ResetivateAllServers()
     {
+        _previousActivatedNode = null;
+        _currentActivatedNode = null;
         foreach (var server in _servers)
         {
             server.GetComponent<SelectionHandler>().StartResetivate();
@@ -92,7 +95,9 @@ public class ServerController : MonoBehaviour
     {
         if (_currentActivatedNode)
         {
-            _currentActivatedNode.StartActivationRemotely(false);
+            _currentActivatedNode.GetComponent<LinkHandler>().RefreshNeighborSelectability();
         }
     }
+
+
 }

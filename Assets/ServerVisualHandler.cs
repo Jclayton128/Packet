@@ -104,6 +104,10 @@ public class ServerVisualHandler : VisualHandler
 
     }
 
+    public void UpgradeSelect()
+    {
+        _selectionSprite.color = ColorController.Instance.UpgradeableNode;
+    }
 
     public void DepictMaxLoad(int maxCount)
     {

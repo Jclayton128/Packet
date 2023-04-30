@@ -7,14 +7,18 @@ public class ToolResourceController : MonoBehaviour
     public static ToolResourceController Instance;
 
     //settings
-    [SerializeField] int[] _toolCosts = new int[3];
+    [SerializeField] int[] _toolCosts = new int[4];
 
 
     //state
-    int _currentResources;  
+    int _currentResources;
+    [SerializeField] int _currentTool;
+    public int CurrentTool => _currentTool;
 
     private void Awake()
     {
+        _currentResources = 0;
+        _currentTool = 0;
         Instance = this;
     }
 
@@ -57,9 +61,38 @@ public class ToolResourceController : MonoBehaviour
             }
             else
             {
+                if (_currentTool == i)
+                {
+                    UIController.Instance.Tool.SelectTool(0);
+                }
                 UIController.Instance.Tool.SetToolInteractable(i, false);
             }
         }
     }
+
+    public void HandleToolSelection(int tool)
+    {
+        _currentTool = tool;
+        if (_currentTool == 0)
+        {
+            ServerController.Instance.RecheckCurrentActivatedNodesNeighbors();
+        }
+    }
+
+    public void HandleSelectedToolUsageCost()
+    {
+        if (_toolCosts[CurrentTool] > _currentResources)
+        {
+            Debug.Log("not enough resources;");
+            UIController.Instance.Tool.SelectTool(0);
+        }
+        else
+        {
+            LoseResource(_toolCosts[CurrentTool]);
+            UIController.Instance.Tool.SelectTool(0);
+        }
+    }
+
+
 
 }

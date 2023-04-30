@@ -55,19 +55,64 @@ public class SelectionHandler : MonoBehaviour
     private void OnMouseOver()
     {
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
-        if (CanBeSelected)
+        
+        if (ToolResourceController.Instance.CurrentTool == 0)
         {
-            _isSelected = true;
-            BroadcastMessage("Select");
+            if (CanBeSelected)
+            {
+                _isSelected = true;
+                BroadcastMessage("Select");
+            }
         }
+        else if (ToolResourceController.Instance.CurrentTool == 1)
+        {
+            if (_slh && _slh.CheckIfCanIncreaseMaxLoad())
+            {
+                BroadcastMessage("UpgradeSelect");
+            }
+        }
+        else if (ToolResourceController.Instance.CurrentTool == 2)
+        {
+            if (_slh && _slh.CheckIfCanEncrypt())
+            {
+                BroadcastMessage("UpgradeSelect");
+            }
+        }
+        else if (ToolResourceController.Instance.CurrentTool == 3)
+        {
+            if (_slh && _slh.CheckIfCanRepair())
+            {
+                BroadcastMessage("UpgradeSelect");
+            }
+        }
+
+
     }
 
     private void OnMouseDown()
     {
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
-        if (_isSelected)
+        if (ToolResourceController.Instance.CurrentTool == 0)
         {
-            StartActivation(true);
+            if (_isSelected)
+            {
+                StartActivation(true);
+            }    
+        }        
+        else if (_slh && ToolResourceController.Instance.CurrentTool == 1)
+        {
+            ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            _slh.IncreaseServerMaxLoad();
+        }
+        else if (_slh && ToolResourceController.Instance.CurrentTool == 2)
+        {
+            ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            _slh.EncryptServer();
+        }
+        else if (_slh && ToolResourceController.Instance.CurrentTool == 3)
+        {
+            ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            _slh.RepairServer();
         }
     }
 

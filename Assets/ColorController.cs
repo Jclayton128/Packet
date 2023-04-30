@@ -56,6 +56,10 @@ public class ColorController : MonoBehaviour
     public Color SelectableNode => _selectableNode;
 
 
+    [SerializeField] Color _upgradeableNode = Color.cyan;
+    public Color UpgradeableNode => _upgradeableNode;
+
+
     [SerializeField] Color _targetTerminal = Color.green;
     public Color TargetTerminal => _targetTerminal;
 

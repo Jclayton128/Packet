@@ -39,6 +39,7 @@ public class ServerLoadHandler : MonoBehaviour
         Resetivate();
         _svh.DepictMaxLoad(_startingMaxLoad);
         _svh.SetEncryptionStatus(_currentEncryptionStatus);
+        PushVisuals();
     }
 
     private void Update()
@@ -124,7 +125,8 @@ public class ServerLoadHandler : MonoBehaviour
         _timeToHealLoadDamageUnit = 0;
         _currentLoadStatus = DetermineLoadStatus();
         //TODO force a reselection if 
-        PushVisuals();
+        BroadcastMessage("Deactivate");
+        _svh.DepictLoadStatus(_currentLoadStatus, _currentLoad, _currentMaxLoad);
     }
 
     [ContextMenu("Encrypt")]
@@ -135,12 +137,29 @@ public class ServerLoadHandler : MonoBehaviour
     }
 
     [ContextMenu("Capacity")]
-    public void CapacitizeServer()
+    public void IncreaseServerMaxLoad()
     {
         _currentMaxLoad++;
+        _currentMaxLoad = Mathf.Clamp(_currentMaxLoad, 0, 8);
         _timeToHealLoadDamageUnit = 0;
         _currentLoadStatus = DetermineLoadStatus();
         _svh.DepictMaxLoad(_currentMaxLoad);
         PushVisuals();
+    }
+
+    public bool CheckIfCanRepair()
+    {
+        return IsBroken;
+    }
+
+    public bool CheckIfCanEncrypt()
+    {
+        return !_currentEncryptionStatus;
+    }
+
+    public bool CheckIfCanIncreaseMaxLoad()
+    {
+        if (_currentMaxLoad < 8) return true;
+        else return false;
     }
 }

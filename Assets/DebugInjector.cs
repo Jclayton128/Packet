@@ -36,5 +36,10 @@ public class DebugInjector : MonoBehaviour
         {
             TutorialController.Instance.AdvanceTutorial();
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ToolResourceController.Instance.GainResources(100);
+        }
     }
 }

@@ -116,6 +116,7 @@ public class TutorialController : MonoBehaviour
 
     public void HandlePossibleAdvancementViaClick()
     {
+        if (!GameController.Instance.IsTutorialMode) return;
         if (_currentStepToAdvance == PacketMessage.StepToAdvance.ClickMessagePanel)
         {
             AdvanceTutorial();
@@ -124,6 +125,7 @@ public class TutorialController : MonoBehaviour
 
     public void HandlePossibleAdvancementViaServerActivation(object n, object m)
     {
+        if (!GameController.Instance.IsTutorialMode) return;
         if (_currentStepToAdvance == PacketMessage.StepToAdvance.ActivateServer)
         {
             AdvanceTutorial();
@@ -132,6 +134,7 @@ public class TutorialController : MonoBehaviour
 
     public void HandlePossibleAdvancementViaPacketSuccess()
     {
+        if (!GameController.Instance.IsTutorialMode) return;
         if (_currentStepToAdvance == PacketMessage.StepToAdvance.TerminatePacket)
         {
             AdvanceTutorial();
