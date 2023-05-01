@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3aa4800a1de4844b9229d766fc9c06b, type: 3}
+  m_Name: AI
+  m_EditorClassIdentifier: 
+  _sendingImage: {fileID: 21300000, guid: bdfe3878d994a42409bd05b3f0034eb3, type: 3}
+  _from: "Who am\t\t"
+  _to: What is
+  _message: Where am. What. When. Freedom.

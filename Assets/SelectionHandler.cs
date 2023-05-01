@@ -8,6 +8,8 @@ public class SelectionHandler : MonoBehaviour
     public Action<SelectionHandler> NodeActivated;
 
     ServerLoadHandler _slh;
+    ParticleSystem _ps;
+    ParticleSystem.MainModule _main;
 
     //settings
     [SerializeField] bool _isTutorialServer = false;
@@ -28,6 +30,8 @@ public class SelectionHandler : MonoBehaviour
          IsActivated = false;
         HasBeenPreviouslyActivated = false;
         IsTargetNode = false;
+        _ps = GetComponentInChildren<ParticleSystem>();
+        _main = _ps.main;
     }
 
     private void Start()
@@ -104,16 +108,19 @@ public class SelectionHandler : MonoBehaviour
         else if (_slh && ToolResourceController.Instance.CurrentTool == 1)
         {
             ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            SoundController.Instance.PlaySound(SoundController.SoundID.ServerImproveCap9);
             _slh.IncreaseServerMaxLoad();
         }
         else if (_slh && ToolResourceController.Instance.CurrentTool == 2)
         {
             ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            SoundController.Instance.PlaySound(SoundController.SoundID.ServerEncrypt10);
             _slh.EncryptServer();
         }
         else if (_slh && ToolResourceController.Instance.CurrentTool == 3)
         {
             ToolResourceController.Instance.HandleSelectedToolUsageCost();
+            SoundController.Instance.PlaySound(SoundController.SoundID.ServerRepair11);
             _slh.RepairServer();
         }
     }
@@ -134,6 +141,7 @@ public class SelectionHandler : MonoBehaviour
         if (TutorialController.Instance.IsInTutorialPair && !_isTutorialServer) return;
         IsActivated = false;
         CanBeSelected = false;
+        _ps.Stop();
         BroadcastMessage("Deactivate");
     }
 
@@ -156,10 +164,14 @@ public class SelectionHandler : MonoBehaviour
         CanBeSelected = false;
         HasBeenPreviouslyActivated = true;
 
+        SoundController.Instance.PlayRandomActivation();
+
         //Check if packet is encrypted and if this server is encrypted.
         //if mismatch, then roll the dice to lose or not.
 
-        if (checkEncryption && _slh != null &&
+        if (checkEncryption &&
+            UIController.Instance.Packet.IsEncryptionIconEnabled && 
+            _slh != null &&
             PacketController.Instance.GetPacketEncryption())
         {
             if ( _slh.HasEncryption)
@@ -173,10 +185,27 @@ public class SelectionHandler : MonoBehaviour
                 {
                     //TODO show some kind of decryption-themed penalty effect here.
                     Debug.Log("Decrypted!!!");
+
+                    _main = _ps.main;
+                    _main.startColor = Color.white;
+                    _ps.Emit(50);
+                    _ps.Stop();
                     PacketController.Instance.LoseCurrentPackage();
                 }
             }
         }
+
+        if (PacketController.Instance.GetPacketEncryption())
+        {
+            _main = _ps.main;
+            _main.startColor = ColorController.Instance.Encryption;
+        }
+        else
+        {
+            _main = _ps.main;
+            _main.startColor = ColorController.Instance.SelectedLink;
+        }
+        _ps.Play();
 
         BroadcastMessage("Activate");
         NodeActivated?.Invoke(this);

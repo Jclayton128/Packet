@@ -1,18 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonAudioHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Button button;
+    private void Awake()
     {
-        
+        button = GetComponent<Button>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MouseOver()
     {
-        
+        if (button && button.interactable)
+        {
+            SoundController.Instance.PlaySound(SoundController.SoundID.ButtonHoverOver0);
+        }        
+    }
+    public void MouseExit()
+    {
+        if (button && button.interactable)
+        {
+            SoundController.Instance.PlaySound(SoundController.SoundID.ButtonHoverExit1);
+        }
+    }
+
+
+    public void MouseUp()
+    {
+        if (button && button.interactable)
+        {
+            SoundController.Instance.PlaySound(SoundController.SoundID.ButtonRelease3);
+        }
     }
 }

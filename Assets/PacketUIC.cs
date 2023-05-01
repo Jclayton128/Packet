@@ -30,6 +30,7 @@ public class PacketUIC : MonoBehaviour
     Color _pulseDim = Color.clear;
     float _pulseFactor;
     public bool IsTimerArcEnabled => _timerArc.enabled;
+    public bool IsEncryptionIconEnabled => _encryptionStatus.enabled;
 
 
     public void ShowPacketPanel()

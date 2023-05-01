@@ -23,6 +23,11 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Invoke(nameof(InstafadeAll), 0.01f);
+    }
+
     public void IncrementFadeInPhase()
     {
         _currentPhase++;
@@ -49,6 +54,7 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    [ContextMenu("insta fade all")]
     public void InstafadeAll()
     {
         foreach (var fh in _fadeHandlers)

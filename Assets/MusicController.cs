@@ -36,6 +36,11 @@ public class MusicController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlaySound(0);
+    }
+
     public void PlaySound(int index)
     {
         PlaySound((MusicID)index);
@@ -44,7 +49,7 @@ public class MusicController : MonoBehaviour
     public void PlaySound(MusicID music)
     {
         _auso.clip = _clips[music];
-        _auso.Play();
+        _auso.loop = true;
     }
 
     public int ToggleVolume()

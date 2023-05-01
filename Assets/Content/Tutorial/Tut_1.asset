@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Tut_1
   m_EditorClassIdentifier: 
   _sendingImage: {fileID: 21300000, guid: 8973534067d7f394c8ba9948978e0d65, type: 3}
-  _message: You exist to deliver packets. I exist to monitor you. Failure will result
-    in your replacement.
+  _message: I exist to monitor you. Failure means termination of your program.
   _hint: Click Here To Continue
   _stepToAdvance: 2
   _invokesTutorialPair: 0

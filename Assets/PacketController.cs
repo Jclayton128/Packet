@@ -13,7 +13,7 @@ public class PacketController : MonoBehaviour
     [SerializeField] float _minTime = 10f; //seconds
     [SerializeField] float _maxTime = 40f;
     [SerializeField] float _moveCostMultiplier = 1f;
-    [SerializeField] float _encryptionPenaltyChance = 0.3f;
+    [SerializeField] float _encryptionPenaltyChance = 0.5f;
     public float EncryptionPenaltyChance => _encryptionPenaltyChance;
 
     //state
@@ -49,14 +49,17 @@ public class PacketController : MonoBehaviour
             time = 600;
         }
 
-        int boolvalue = UnityEngine.Random.Range(0, 8); //0: encrypted, 8 gives a 12.5% encrypted chance
+        int boolvalue = UnityEngine.Random.Range(0, 6); //0: encrypted, 8 gives a 12.5% encrypted chance
         bool encrypt;
         if (!TutorialController.Instance.IsInTutorialPair && boolvalue == 0)
         {
+            value += 1;
+            value = Mathf.Clamp(value, _minValue, _maxValue);
             encrypt = true;
+            SoundController.Instance.PlayRandomNewEncPacket();
         }
         else encrypt = false;
-
+        SoundController.Instance.PlayRandomNewEncPacket();
         Packet packet = new Packet(value, encrypt, time);
         _currentPacket = packet;
         _timeRemainingForCurrentPacket = _currentPacket.StartTime;
@@ -89,7 +92,7 @@ public class PacketController : MonoBehaviour
 
     public void GainCurrentPacket()
     {
-        //TODO chaching audio
+        SoundController.Instance.PlayRandomCompletion();
         _packetsDelivered++;
         UIController.Instance.Endgame.SetPacketCounter(_packetsDelivered);
         ToolResourceController.Instance.GainResources(_currentPacket.Value);
@@ -99,10 +102,13 @@ public class PacketController : MonoBehaviour
 
     public void LoseCurrentPackage()
     {
+        var ps = ServerController.Instance._currentActivatedNode.
+            GetComponentInChildren<ParticleSystem>();
+        if (ps) ps.Stop();
 
         if (_currentPacket != null)
         {
-            //TODO negative audio
+            SoundController.Instance.PlayRandomFailure();
             ToolResourceController.Instance.LoseResource(_currentPacket.Value);
             ClearPacket();
             PathController.Instance.CreateNewPathProblem();

@@ -85,6 +85,7 @@ public class ServerLoadHandler : MonoBehaviour
         else
         {
             //Debug.Log("Server Break!");
+            SoundController.Instance.PlaySound(SoundController.SoundID.ServerBreak12);
             return LoadStatus.Broken;
         }
     }
@@ -97,6 +98,7 @@ public class ServerLoadHandler : MonoBehaviour
         _timeToHealLoadDamageUnit = Time.time +ServerController.Instance.HealLoadTimeCost;
         _currentLoadStatus = DetermineLoadStatus();
         if (_currentLoadStatus == LoadStatus.Broken) IsBroken = true;
+
         PushVisuals();
     }
 

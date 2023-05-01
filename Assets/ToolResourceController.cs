@@ -26,6 +26,12 @@ public class ToolResourceController : MonoBehaviour
     {
         SetToolCosts();
         PushToolAvailability();
+        Invoke(nameof(SelectRouteTool_Delay), 0.01f);
+    }
+
+    private void SelectRouteTool_Delay()
+    {
+        HandleToolSelection(0);
     }
 
     public void SetToolCosts()

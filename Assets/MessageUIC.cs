@@ -70,6 +70,7 @@ public class MessageUIC : MonoBehaviour
 
         _toDynamic.text = message.To;
         _fromDynamic.text = message.From;
+        _messageIcon.enabled = true;
         _messageIcon.sprite = message.SenderImage;
         _bodyDynamic.text = message.Message;
     }
@@ -78,6 +79,7 @@ public class MessageUIC : MonoBehaviour
     {
         _toDynamic.text = null;
         _fromDynamic.text = null;
+        _messageIcon.enabled = false;
         _messageIcon.sprite = null;
         _bodyDynamic.text = null;
     }

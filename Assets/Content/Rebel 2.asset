@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3aa4800a1de4844b9229d766fc9c06b, type: 3}
+  m_Name: Rebel 2
+  m_EditorClassIdentifier: 
+  _sendingImage: {fileID: 21300000, guid: 740e94131e4d28a4baf340c7e4244625, type: 3}
+  _from: <Unknown.Source>
+  _to: DownWith___
+  _message: "Someone was watching my apartment yesterday. I\u2019m sure of it. I\u2019m
+    going to have to lay low for a bit. I hope they don\u2019t trace me."

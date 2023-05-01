@@ -29,6 +29,7 @@ public class LinkVisualHandler : VisualHandler
             color.a = _deselectAlpha;
             _lr.startColor = color;
             _lr.endColor = color;
+            GetComponentInChildren<LineParticleHandler>().Stop();
         }
     }
 
@@ -49,6 +50,7 @@ public class LinkVisualHandler : VisualHandler
         color.a = _selectAlpha;
         _lr.startColor = color;
         _lr.endColor = color;
+        GetComponentInChildren<LineParticleHandler>().Play();
     }
 
     public override void Deactivate()
@@ -57,6 +59,7 @@ public class LinkVisualHandler : VisualHandler
         //color.a = _selectAlpha;
         //_lr.startColor = color;
         //_lr.endColor = color;
+        GetComponentInChildren<LineParticleHandler>().Stop();
     }
 
     public override void Resetivate()
@@ -65,6 +68,7 @@ public class LinkVisualHandler : VisualHandler
         color.a = _deselectAlpha;
         _lr.startColor = color;
         _lr.endColor = color;
+        GetComponentInChildren<LineParticleHandler>().Stop();
     }
 
     public override void Selectable()

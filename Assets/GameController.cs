@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     }
 
 
+
+
     public void ToggleTutorialMode()
     {
         _isTutorialMode = !_isTutorialMode;
@@ -38,7 +40,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         _isGameOver = false;
-        ToolResourceController.Instance.GainResources(20);
+        ToolResourceController.Instance.GainResources(15);
 
         if (_isTutorialMode)
         {
