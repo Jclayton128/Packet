@@ -46,7 +46,7 @@ public class ServerVisualHandler : VisualHandler
     {
         if (_sh.CanBeSelected)
         {
-            _selectionSprite.color = ColorController.Instance.SelectableNode;
+            _selectionSprite.color = ColorController.Instance.SelectableRing;
         }
         else
         {
@@ -58,7 +58,7 @@ public class ServerVisualHandler : VisualHandler
     public override void Selectable()
     {
         //_selectionSprite.enabled = true;
-        _selectionSprite.color = ColorController.Instance.SelectableNode;
+        _selectionSprite.color = ColorController.Instance.SelectableRing;
     }
 
     public override void Activate()

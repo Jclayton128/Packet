@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Server
   - Terminal
+  - Node
   layers:
   - Default
   - TransparentFX

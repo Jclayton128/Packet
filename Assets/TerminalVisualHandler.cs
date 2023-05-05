@@ -39,7 +39,7 @@ public class TerminalVisualHandler : VisualHandler
     {
         if (_sh.CanBeSelected)
         {
-            _selection.color = ColorController.Instance.SelectableNode;
+            _selection.color = ColorController.Instance.SelectableRing;
         }
         else
         {
@@ -51,7 +51,7 @@ public class TerminalVisualHandler : VisualHandler
     public override void Selectable()
     {
         _selection.enabled = true;
-        _selection.color = ColorController.Instance.SelectableNode;
+        _selection.color = ColorController.Instance.SelectableRing;
     }
 
     public override void Activate()

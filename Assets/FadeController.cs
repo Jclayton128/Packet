@@ -8,8 +8,13 @@ public class FadeController : MonoBehaviour
 
     List<FadeHandler> _fadeHandlers = new List<FadeHandler>();
 
+    List<GameObject> _newFaders = new List<GameObject>();
+    [SerializeField] float _fadeDuration = 1f;
+
+
     //state
     public int _currentPhase;
+    Dictionary<int, List<IFadeable>> _phases = new Dictionary<int, List<IFadeable>>();
 
     private void Awake()
     {
@@ -21,6 +26,8 @@ public class FadeController : MonoBehaviour
         {
             _fadeHandlers.Add(f);
         }
+
+
     }
 
     private void Start()
@@ -42,6 +49,12 @@ public class FadeController : MonoBehaviour
             {
                 fh.AllowNonCoreVisuals();
             }
+        }
+
+        List<IFadeable> faders = _phases[_currentPhase];
+        foreach (var fader in faders)
+        {
+            fader.FadeIn(_fadeDuration);
         }
     }
 

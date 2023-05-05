@@ -50,6 +50,8 @@ public class FadeHandler : MonoBehaviour
     public void ForceFadeoutWithOrganicDelay()
     {
         float delay = UnityEngine.Random.Range(.5f, 3f);
+        var lch = GetComponentInChildren<LineParticleHandler>();
+        if (lch) lch.Stop();
         Invoke(nameof(FadeOut), delay);
     }
 

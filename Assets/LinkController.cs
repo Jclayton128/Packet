@@ -31,7 +31,7 @@ public class LinkController : MonoBehaviour
         ServerController.Instance.NodeActivated += HandleServerConnection;
     }
 
-  
+
     private void FindAllServers()
     {
         foreach (var server in ServerController.Instance.Servers)

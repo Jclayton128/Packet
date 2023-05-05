@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    public Action RevisedGameStart;
+
+
+    //Settings
+    [SerializeField] Vector3 _revisedWorldPosition = new Vector3(30f, 0, -10f);
+
 
     //state
     [SerializeField] bool _isTutorialMode;
@@ -12,6 +19,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] bool _isGameOver = false;
     public bool IsGameOver => _isGameOver;
+
+    public bool IsRevisedMode = false;
 
     private void Awake()
     {
@@ -37,6 +46,14 @@ public class GameController : MonoBehaviour
         Invoke(nameof(StartGame), 2.5f);
     }
 
+    public void StartGame_Revised()
+    {
+        IsRevisedMode = true;
+        Camera.main.transform.position = _revisedWorldPosition;
+        RevisedGameStart?.Invoke();
+    }
+
+    
     public void StartGame()
     {
         _isGameOver = false;
