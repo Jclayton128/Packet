@@ -50,6 +50,11 @@ public class GameController : MonoBehaviour
     {
         IsRevisedMode = true;
         Camera.main.transform.position = _revisedWorldPosition;
+        Invoke(nameof(StartGame_Revised_Delay), 2f);
+    }
+
+    private void StartGame_Revised_Delay()
+    {
         RevisedGameStart?.Invoke();
     }
 

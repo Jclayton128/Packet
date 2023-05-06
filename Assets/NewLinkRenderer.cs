@@ -21,6 +21,22 @@ public class NewLinkRenderer : MonoBehaviour
         _lr = GetComponent<LineRenderer>();
     }
 
+    public void FadeInLink()
+    {
+        //Tween this later
+        DeselectPossibleLink();
+    }
+
+    public void FadeOutLink()
+    {
+        //Tween this later
+        _lr.sortingOrder = 0;
+        _lr.startColor = ColorController.Instance.ColdClear;
+        _lr.endColor = ColorController.Instance.ColdClear;
+        _lph.Stop();
+    }
+
+
     public void SelectPossibleLink()
     {
         _lr.sortingOrder = 1;

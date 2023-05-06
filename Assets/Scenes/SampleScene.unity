@@ -5661,7 +5661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e462dceb410187f4d8db0c8e4ef48f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unloadedColor: {r: 1, g: 1, b: 1, a: 1}
+  _unloadedColor: {r: 0.866, g: 0.866, b: 0.866, a: 1}
+  _unloadedClear: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0}
   _loadedColor_Low: {r: 0.45498994, g: 1, b: 0.3150943, a: 1}
   _loadedColor_Mid: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _loadedColor_High: {r: 1, g: 0, b: 0, a: 1}
@@ -5669,6 +5670,7 @@ MonoBehaviour:
   _warmLink: {r: 0.08627451, g: 0.36862746, b: 0.14117648, a: 1}
   _selectedLink: {r: 0, g: 1, b: 0, a: 1}
   _coldNode: {r: 0.49, g: 0.49, b: 0.49, a: 1}
+  _coldClear: {r: 0.4901961, g: 0.4901961, b: 0.4901961, a: 0}
   _warmNode: {r: 0.18901628, g: 0.3962264, b: 0.10715553, a: 1}
   _selectedNode: {r: 0, g: 1, b: 0, a: 1}
   _brokenNode: {r: 1, g: 0, b: 0, a: 1}

@@ -38,6 +38,8 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
 
     public void Start()
     {
+        HideSelectionRing();
+
         _base_3.color = ColorController.Instance.ColdClear;
         _base_4.color = ColorController.Instance.ColdClear;
         _base_5.color = ColorController.Instance.ColdClear;

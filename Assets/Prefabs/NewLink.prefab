@@ -4970,3 +4970,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106c16854a8172d499f1adae988c7b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeDuration: 1
+  ConnectedNode: {fileID: 0}

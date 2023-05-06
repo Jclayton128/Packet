@@ -60,6 +60,8 @@ public class NewLinkHandler : MonoBehaviour
         newLink.positionCount = 2;
         newLink.SetPosition(0, transform.position);
         newLink.SetPosition(1, neighbor.transform.position);
+        newLink.startColor = ColorController.Instance.ColdClear;
+        newLink.endColor = ColorController.Instance.ColdClear;
 
 
         NewLinkRenderer link = newLink.GetComponent<NewLinkRenderer>();
@@ -100,6 +102,22 @@ public class NewLinkHandler : MonoBehaviour
         foreach (var link in _links)
         {
             link.DeactivateLink();
+        }
+    }
+
+    public void FadeInAllLinks()
+    {
+        foreach (var link in _links)
+        {
+            link.FadeInLink();
+        }
+    }
+
+    public void FadeOutAllLinks()
+    {
+        foreach (var link in _links)
+        {
+            link.FadeOutLink();
         }
     }
 

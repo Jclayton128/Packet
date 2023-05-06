@@ -11,7 +11,9 @@ public class ColorController : MonoBehaviour
     [Header("Load Dots")]
     [SerializeField] Color _unloadedColor = Color.gray;
     public Color UnloadedColor => _unloadedColor;
-    public Color UnloadedClear => new Color(_unloadedColor.r, _unloadedColor.g, _unloadedColor.b, 0);
+
+    [SerializeField] Color _unloadedClear = Color.gray;
+    public Color UnloadedClear => _unloadedClear;
 
 
     [SerializeField] Color _loadedColor_Low = Color.white;
@@ -39,7 +41,9 @@ public class ColorController : MonoBehaviour
     [Header("Nodes")]
     [SerializeField] Color _coldNode = Color.gray;
     public Color ColdNode => _coldNode;
-    public Color ColdClear => new Color(_coldNode.r, _coldNode.g, _coldNode.b, 0);
+
+    [SerializeField] Color _coldClear = Color.gray;
+    public Color ColdClear => _coldClear;
 
 
     [SerializeField] Color _warmNode = Color.blue;
