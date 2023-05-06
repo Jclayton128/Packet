@@ -39,7 +39,7 @@ public class ServerVisualHandler : VisualHandler
     public override void Select()
     {
         //_selectionSprite.enabled = true;
-        _selectionSprite.color = ColorController.Instance.SelectedNode;
+        _selectionSprite.color = ColorController.Instance.SourceNode;
     }
 
     public override void Deselect()
@@ -65,7 +65,7 @@ public class ServerVisualHandler : VisualHandler
     {
         if (!_slh.IsBroken)
         {
-            _baseSprite.color = ColorController.Instance.SelectedNode;
+            _baseSprite.color = ColorController.Instance.SourceNode;
         }
         else
         {

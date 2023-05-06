@@ -27,7 +27,7 @@ public class TerminalVisualHandler : VisualHandler
     {
         if (_sh.CanBeSelected)
         {
-            _selection.color = ColorController.Instance.SelectedNode;
+            _selection.color = ColorController.Instance.SourceNode;
         }
         else
         {
@@ -56,7 +56,7 @@ public class TerminalVisualHandler : VisualHandler
 
     public override void Activate()
     {
-        _base.color = ColorController.Instance.SelectedNode;
+        _base.color = ColorController.Instance.SourceNode;
     }
 
     public override void Deactivate()
@@ -101,7 +101,7 @@ public class TerminalVisualHandler : VisualHandler
 
     public void SetAsStartTerminal()
     {
-        _base.color = ColorController.Instance.SelectedNode;
+        _base.color = ColorController.Instance.SourceNode;
     }
 
     public void SetAsEndTerminal()

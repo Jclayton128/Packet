@@ -127,12 +127,12 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
         }
     }
 
-    public void SetBase(int baseTier)
+    public void SetBase(int baseTier, Color baseColor)
     {
-        _base_3.color = ColorController.Instance.ColdClear;
-        _base_4.color = ColorController.Instance.ColdClear;
-        _base_5.color = ColorController.Instance.ColdClear;
-        _base_6.color = ColorController.Instance.ColdClear;
+        _base_3.color = baseColor;
+        _base_4.color = baseColor;
+        _base_5.color = baseColor;
+        _base_6.color = baseColor;
 
         switch (baseTier)
         {

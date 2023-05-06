@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class NewLinkHandler : MonoBehaviour
 {
-    public List<NewNodeHandler> _neighbors = new List<NewNodeHandler> ();
+    List<NewNodeHandler> _neighbors = new List<NewNodeHandler> ();
+    public List<NewNodeHandler> Neighbors => _neighbors;
     public List<NewLinkRenderer> _links = new List<NewLinkRenderer>();
 
     //settings
     [SerializeField] LineRenderer _linkPrefab = null;
-    [SerializeField] float _maxLinkDistance = 3f;
+
 
 
     private void Start()
@@ -37,7 +38,7 @@ public class NewLinkHandler : MonoBehaviour
         {
             if (this == node) continue;
             dist = (transform.position - node.transform.position).magnitude;
-            if (dist < _maxLinkDistance && dist > Mathf.Epsilon)
+            if (dist < NodeController.Instance.MaxPairDistance && dist > Mathf.Epsilon)
             {
                 _neighbors.Add(node);
                 CreateNewLink(node);

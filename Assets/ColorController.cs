@@ -50,8 +50,8 @@ public class ColorController : MonoBehaviour
     public Color WarmNode => _warmNode;
     
 
-    [SerializeField] Color _selectedNode = Color.white;
-    public Color SelectedNode => _selectedNode;
+    [SerializeField] Color _sourceNode = Color.white;
+    public Color SourceNode => _sourceNode;
 
 
     [SerializeField] Color _brokenNode = Color.red;
@@ -66,7 +66,7 @@ public class ColorController : MonoBehaviour
     public Color UpgradeableNode => _upgradeableNode;
 
 
-    [SerializeField] Color _targetTerminal = Color.green;
+    [SerializeField] Color _targetTerminal = Color.cyan;
     public Color TargetTerminal => _targetTerminal;
 
 
