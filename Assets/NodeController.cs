@@ -26,6 +26,8 @@ public class NodeController : MonoBehaviour
     public NewNodeHandler CurrentTargetNode => _currentTargetNode;
     [SerializeField] NewNodeHandler _previousSourceNode;
     public NewNodeHandler PreviousSourceNode => _previousSourceNode;
+    [SerializeField] NewNodeHandler _multiTargetNode;
+    public NewNodeHandler MultiTargetNode => _multiTargetNode;
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class NodeController : MonoBehaviour
         {
             node.Initialize();
         }
+        CreateSourceTargetPair();
     }
 
     public void ProcessBrokenNode(NewNodeHandler brokenNode)
@@ -69,8 +72,8 @@ public class NodeController : MonoBehaviour
     [ContextMenu("Create Pair")]
     public void CreateSourceTargetPair()
     {
-        Debug.Log($"creating new pair");
         DeactivateAllNodes();
+        NewPacketController.Instance.GenerateNewPacket();
 
         _previousSourceNode = null;
         int rand = UnityEngine.Random.Range(0, _workingNodes.Count);
@@ -87,13 +90,42 @@ public class NodeController : MonoBehaviour
             if (breaker <= 0)
             {
                 Debug.LogWarning("breaker!");
+                //Loss condition?
                 break;
             }
         }
         while (dist < _minPairDistance);
 
+        if (NewPacketController.Instance.CurrentPacketType ==
+            NewPacketController.PacketType.Multi1)
+        {
+            float dist1;
+            float dist2;
+            do
+            {
+                int randTgt = UnityEngine.Random.Range(0, _workingNodes.Count);
+                _multiTargetNode = _workingNodes[randTgt];
+                dist1 = (_multiTargetNode.transform.position - _currentTargetNode.transform.position).magnitude;
+                dist2 = (_multiTargetNode.transform.position - _currentSourceNode.transform.position).magnitude;
+                breaker--;
+                if (breaker <= 0)
+                {
+                    Debug.LogWarning("breaker!");
+                    //Loss condition 2?
+                    break;
+                }
+            }
+            while (dist1 < _minPairDistance || dist2 < _minPairDistance);
+        }
+        else
+        {
+            _multiTargetNode = null;
+        }
+
         ActivateCurrentSourceMode_NewPair();
         _currentTargetNode.ActivateNodeAsTarget();
+        if (_multiTargetNode) _multiTargetNode.ActivateNodeAsTarget();
+
     }
 
     private void DeactivateAllNodes()
@@ -143,19 +175,28 @@ public class NodeController : MonoBehaviour
         if (_currentSourceNode) _previousSourceNode = _currentSourceNode;
         _currentSourceNode = selectedNode;
         ActivateCurrentSourceNode_ServerClick();
-
-
-
-        if (selectedNode == _currentTargetNode)
+        
+        if ((selectedNode == _currentTargetNode && 
+            _multiTargetNode == null) ||
+            (selectedNode == _multiTargetNode &&
+            _currentTargetNode == null))
         {
             HandleSuccessfulDelivery();
+        }
+        else if (selectedNode == _currentTargetNode)
+        {
+            _currentTargetNode = null;
+            SoundController.Instance.PlayRandomActivation();
+        }
+        else if (selectedNode == _multiTargetNode)
+        {
+            _multiTargetNode = null;
+            SoundController.Instance.PlayRandomActivation();
         }
         else
         {
             SoundController.Instance.PlayRandomActivation();
         }
-
-
     }
 
     private void HandleSuccessfulDelivery()

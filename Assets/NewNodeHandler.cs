@@ -116,7 +116,6 @@ public class NewNodeHandler : MonoBehaviour
         SetNodeAsUnselectable();
         _nr.SetBase(_baseTier, ColorController.Instance.SourceNode);
         _ps.Play();
-
         _lh.ActivateLink(NodeController.Instance.PreviousSourceNode);
         //illumine link to previous source node
     }
