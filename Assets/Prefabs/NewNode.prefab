@@ -453,6 +453,9 @@ MonoBehaviour:
   _startingBaseTier: 3
   _loadDotsHealedPerDelivery: 1
   IsSelectable: 1
+  _isWarm: 0
+  _isBroken: 0
+  _currentLoad: 0
 --- !u!114 &8560886135939801390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1e0852b446b634fb678c9dc065c22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _neighbors: []
   _links: []
   _linkPrefab: {fileID: 7672895846695119853, guid: f907c55e2249760468ab33de0c022345, type: 3}
 --- !u!1 &2136486816420710859
@@ -1937,7 +1941,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2

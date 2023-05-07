@@ -11,6 +11,7 @@ public class NodeController : MonoBehaviour
     public static NodeController Instance { get; private set; }
 
     //settings
+    [SerializeField] PacketRenderer _packetRendererPrefab = null;
     [SerializeField] float _minPairDistance = 2f;
     [SerializeField] float _maxPairDistance = 3f;
     public float MaxPairDistance => _maxPairDistance;
@@ -29,6 +30,8 @@ public class NodeController : MonoBehaviour
     public NewNodeHandler PreviousSourceNode => _previousSourceNode;
     [SerializeField] NewNodeHandler _multiTargetNode;
     public NewNodeHandler MultiTargetNode => _multiTargetNode;
+
+    PacketRenderer _currentPacketRenderer;
 
     private void Awake()
     {
@@ -127,6 +130,15 @@ public class NodeController : MonoBehaviour
         _currentTargetNode.ActivateNodeAsTarget();
         if (_multiTargetNode) _multiTargetNode.ActivateNodeAsTarget();
 
+
+        if (!_currentPacketRenderer)
+        {
+            _currentPacketRenderer = Instantiate(_packetRendererPrefab);
+        }
+        _currentPacketRenderer.SetupPacket(_currentSourceNode,
+            NewPacketController.Instance.CurrentPacketSize,
+            NewPacketController.Instance.CurrentPacketPriority);
+        _currentPacketRenderer.ActivatePacket();
     }
 
     private void DeactivateAllNodes()
@@ -174,6 +186,8 @@ public class NodeController : MonoBehaviour
 
         }
 
+        _currentPacketRenderer.MovePacket(_currentSourceNode);
+
         foreach (var neighbor in _currentSourceNode.ProvideListOfNeighbors())
         {
             neighbor.SetNodeAsSelectable();
@@ -212,6 +226,7 @@ public class NodeController : MonoBehaviour
 
     private void HandleSuccessfulDelivery()
     {
+        _currentPacketRenderer?.DeactivatePacket();
         PacketDelivered?.Invoke();
         SoundController.Instance.PlayRandomCompletion();
         CreateSourceTargetPair();

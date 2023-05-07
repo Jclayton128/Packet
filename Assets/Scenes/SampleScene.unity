@@ -6564,6 +6564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122727a8a1587c245a68900f4cfe9d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _packetRendererPrefab: {fileID: 4427072986381574518, guid: 085728d5d5393704a9e534a855f52f4e, type: 3}
   _minPairDistance: 2
   _maxPairDistance: 3
   _workingNodes: []
@@ -6583,8 +6584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d98f11fdae012b4199c3ed0cf0e1b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _packetSize_Regular: 4
-  _packetSize_Multi: 4
+  _packetSize_Regular: 3
+  _packetSize_Multi: 1
+  _minPriority: 1
+  _maxPriority: 4
 --- !u!1001 &1393350467
 PrefabInstance:
   m_ObjectHideFlags: 0
