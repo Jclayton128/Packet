@@ -350,7 +350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2136486816203687541}
   - component: {fileID: 2136486816203687540}
-  - component: {fileID: 835387839709736100}
   - component: {fileID: 3342733436319799534}
   - component: {fileID: 4229253918364972684}
   - component: {fileID: 8560886135939801390}
@@ -399,21 +398,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &835387839709736100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136486816203687543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4507dc4fdb0a5449ae4568b8d23e6a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _neighborServers: []
-  _neighborTerminals: []
-  _links: []
 --- !u!114 &3342733436319799534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingBaseTier: 3
+  _loadDotsHealedPerDelivery: 1
   IsSelectable: 1
 --- !u!114 &8560886135939801390
 MonoBehaviour:
@@ -492,10 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1e0852b446b634fb678c9dc065c22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _neighbors: []
   _links: []
   _linkPrefab: {fileID: 7672895846695119853, guid: f907c55e2249760468ab33de0c022345, type: 3}
-  _maxLinkDistance: 3
 --- !u!1 &2136486816420710859
 GameObject:
   m_ObjectHideFlags: 0

@@ -188,11 +188,11 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
                 {
                     if (i < dotsToIllumine)
                     {
-                        _load_3[i].color = ColorController.Instance.LoadedColor_Low;
+                        _load_3[i].color = packetLoadColor;                        
                     }
                     else
                     {
-                        _load_3[i].color = packetLoadColor;
+                        _load_3[i].color = ColorController.Instance.UnloadedColor;
                     }
                 }
                 break;
@@ -202,11 +202,12 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
                 {
                     if (i < dotsToIllumine)
                     {
-                        _load_4[i].color = ColorController.Instance.LoadedColor_Low;
+                        _load_4[i].color = packetLoadColor;
                     }
                     else
                     {
-                        _load_4[i].color = packetLoadColor;
+                        _load_4[i].color = ColorController.Instance.UnloadedColor;
+
                     }
                 }
                 break;
@@ -216,11 +217,11 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
                 {
                     if (i < dotsToIllumine)
                     {
-                        _load_5[i].color = ColorController.Instance.LoadedColor_Low;
+                        _load_5[i].color = packetLoadColor;
                     }
                     else
                     {
-                        _load_5[i].color = packetLoadColor;
+                        _load_5[i].color = ColorController.Instance.UnloadedColor;
                     }
                 }
                 break;
@@ -230,11 +231,12 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
                 {
                     if (i < dotsToIllumine)
                     {
-                        _load_6[i].color = ColorController.Instance.LoadedColor_Low;
+                        _load_6[i].color = packetLoadColor;
                     }
                     else
                     {
-                        _load_6[i].color = packetLoadColor;
+                        _load_6[i].color = ColorController.Instance.UnloadedColor;
+
                     }
                 }
                 break;

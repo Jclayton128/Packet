@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,19 +18,26 @@ public class NewNodeHandler : MonoBehaviour
 
     //settings
     [SerializeField] int _startingBaseTier = 3;
-
+    [SerializeField] int _loadDotsHealedPerDelivery = 1;
 
     //state
     public bool IsSelectable;
-    bool _isWarm;
+    [SerializeField] bool _isWarm;
+    [SerializeField] bool _isBroken;
+    public bool IsBroken => _isBroken;
     private int _baseTier;
-    int _currentLoad;
+    [SerializeField] int _currentLoad;
 
     private void Awake()
     {
         _nr = GetComponent<NewNodeRenderer>();
         _lh = GetComponent<NewLinkHandler>();
         _ps = GetComponentInChildren<ParticleSystem>();
+    }
+
+    private void Start()
+    {
+        NodeController.Instance.PacketDelivered += HandlePacketDelivered;
     }
 
 
@@ -40,10 +48,11 @@ public class NewNodeHandler : MonoBehaviour
         _baseTier = _startingBaseTier;
         IsSelectable = false;
         _isWarm = false;
+        _isBroken = false;
         _nr.SetBase(_baseTier, ColorController.Instance.ColdClear);
         _nr.SetLoadDots(_baseTier, _currentLoad, ColorController.Instance.UnloadedClear);
         _nr.HideSelectionRing();
-        _lh.ConnectWithNeighborNodes();
+        _lh.ConnectWithWorkingNeighborNodes();
         //_lh.DeselectAllLinks();
         Invoke(nameof(MasterFadeIn),1f);
 
@@ -104,20 +113,58 @@ public class NewNodeHandler : MonoBehaviour
 
     public void SetNodeAsSelectable()
     {
+        if (_isBroken) return;
         if (_isWarm) return;
         IsSelectable = true;
         _nr.SetSelectionRing(ColorController.Instance.SelectableRing);
     }
 
 
-    public void ActivateNodeAsSource()
+    public void ActivateNodeAsSource(bool imposeCost)
     {
+        if (imposeCost)
+        {
+            _currentLoad += NewPacketController.Instance.CurrentPacketSize;
+            _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);
+        }
+
+        if (_currentLoad > _baseTier)
+        {
+            _isBroken = true;
+            _nr.SetBase(_baseTier, ColorController.Instance.BrokenNode);
+        }
+        else
+        {
+            _nr.SetBase(_baseTier, ColorController.Instance.SourceNode);
+        }
+
         _lh.DeselectAllLinks();
         SetNodeAsUnselectable();
-        _nr.SetBase(_baseTier, ColorController.Instance.SourceNode);
         _ps.Play();
         _lh.ActivateLink(NodeController.Instance.PreviousSourceNode);
+
+        Color col = FindCurrentLoadColor();
+        _nr.SetLoadDots(_baseTier, _currentLoad, col);
+
+
         //illumine link to previous source node
+    }
+
+    private Color FindCurrentLoadColor()
+    {
+        int remainingLoad = _currentLoad - NewPacketController.Instance.CurrentPacketSize;
+        if (remainingLoad > NewPacketController.Instance.PacketSizeMax)
+        {
+            return ColorController.Instance.LoadedColor_Low;
+        }
+        else if (remainingLoad > 0)
+        {
+            return ColorController.Instance.LoadedColor_Mid;
+        }
+        else
+        {
+            return ColorController.Instance.LoadedColor_High;
+        }
     }
 
     public void ActivateNodeAsTarget()
@@ -127,31 +174,46 @@ public class NewNodeHandler : MonoBehaviour
 
     public void ActivateNodeAsWarm()
     {
-        Debug.Log($"{name} is warm");
-        _isWarm = true;
-        _ps.Stop();
         SetNodeAsUnselectable();
-        _nr.SetBase(_baseTier, ColorController.Instance.WarmNode);
+        _ps.Stop();
+        if (_isBroken)
+        {
+            //NodeController.Instance.ProcessBrokenNode(this);
+            //_nr.SetBase(_baseTier, ColorController.Instance.BrokenNode);
+        }
+        else
+        {
+            _isWarm = true;
+            _nr.SetBase(_baseTier, ColorController.Instance.WarmNode);
+        }
+
     }
 
     public void DeactivateNode()
     {
-        _isWarm = false;
-        SetNodeAsUnselectable();
-        _nr.SetBase(_baseTier, ColorController.Instance.ColdNode);
-        _lh.DeactivateAllLinks();
+        //_lh.DeactivateAllLinks();
         _ps.Stop();
+        if (_isBroken)
+        {
+
+        }
+        else
+        {
+            _isWarm = false;
+            SetNodeAsUnselectable();
+            _nr.SetBase(_baseTier, ColorController.Instance.ColdNode);
+            _lh.DeactivateAllLinks();
+        }
+
     }
 
     private void BreakNode()
     {
-        NodeController.Instance.ProcessBrokenNode(this);
-        SetNodeAsUnselectable();
-        _nr.SetBase(_baseTier, ColorController.Instance.BrokenNode);
         _nr.FadeOut(1f);
         _lh.FadeOutAllLinks();
-        _lh.DeactivateAllLinks();
+        //_lh.DeactivateAllLinks();
         _ps.Stop();
+        NodeController.Instance.ProcessBrokenNode(this);
     }
 
     #endregion
@@ -161,6 +223,21 @@ public class NewNodeHandler : MonoBehaviour
         return _lh.Neighbors;
     }
 
+    public void HandlePacketDelivered()
+    {
+        if (_isBroken)
+        {
+            BreakNode();
+        }
+        else
+        {
+            _currentLoad -= _loadDotsHealedPerDelivery;
+            _currentLoad = Mathf.Clamp(_currentLoad, 0, 99);
+            Color col = FindCurrentLoadColor();
 
+            _nr.SetLoadDots(_baseTier, _currentLoad, col);
+        }
+
+    }
 
 }

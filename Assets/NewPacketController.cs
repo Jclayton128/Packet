@@ -15,6 +15,7 @@ public class NewPacketController : MonoBehaviour
 
     //settings
     [SerializeField] int _packetSize_Regular = 3;
+    public int PacketSizeMax => _packetSize_Regular;
     [SerializeField] int _packetSize_Multi = 1;
 
     //state
@@ -30,7 +31,7 @@ public class NewPacketController : MonoBehaviour
 
     public void GenerateNewPacket()
     {
-        int rand = UnityEngine.Random.Range(0, (int)PacketType.CountX);
+        int rand = UnityEngine.Random.Range(0, 1);//(int)PacketType.CountX);
         if (rand == 0)
         {
             _currentPacketType = PacketType.Regular0;

@@ -31,6 +31,7 @@ public class NewLinkRenderer : MonoBehaviour
     {
         //Tween this later
         _lr.sortingOrder = 0;
+        _lr.enabled = false;
         _lr.startColor = ColorController.Instance.ColdClear;
         _lr.endColor = ColorController.Instance.ColdClear;
         _lph.Stop();

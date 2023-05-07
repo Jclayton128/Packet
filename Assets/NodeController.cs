@@ -6,6 +6,7 @@ using UnityEngine;
 public class NodeController : MonoBehaviour
 {
     public Action<NewNodeHandler> NodeBreak;
+    public Action PacketDelivered;
 
     public static NodeController Instance { get; private set; }
 
@@ -19,7 +20,7 @@ public class NodeController : MonoBehaviour
     List<NewNodeHandler> _allNodes = new List<NewNodeHandler>();
     public List<NewNodeHandler> Nodes => _allNodes;
     [SerializeField] List<NewNodeHandler> _workingNodes = new List<NewNodeHandler>();
-
+    public List<NewNodeHandler> WorkingNodes => _workingNodes;
     [SerializeField] NewNodeHandler _currentSourceNode;
     public NewNodeHandler CurrentSourceNode => _currentSourceNode;
     [SerializeField] NewNodeHandler _currentTargetNode;
@@ -132,7 +133,7 @@ public class NodeController : MonoBehaviour
     {
         //_currentSourceNode?.DeactivateNode();
         //_currentTargetNode?.DeactivateNode();
-        foreach (var node in _workingNodes)
+        foreach (var node in _allNodes)
         {
             node.DeactivateNode();
         }
@@ -148,7 +149,7 @@ public class NodeController : MonoBehaviour
 
     private void ActivateCurrentSourceMode_NewPair()
     {
-        _currentSourceNode.ActivateNodeAsSource();
+        _currentSourceNode.ActivateNodeAsSource(false);
         foreach (var neighbor in _currentSourceNode.ProvideListOfNeighbors())
         {
             neighbor.SetNodeAsSelectable();
@@ -159,10 +160,20 @@ public class NodeController : MonoBehaviour
     {
         if (_previousSourceNode)
         {
-            Debug.Log($"Warming previous source: {_previousSourceNode}");
             _previousSourceNode.ActivateNodeAsWarm();
         } 
-        _currentSourceNode.ActivateNodeAsSource();
+
+        if (_currentSourceNode == _currentTargetNode ||
+            _currentSourceNode == _multiTargetNode)
+        {
+            _currentSourceNode.ActivateNodeAsSource(false);
+        }
+        else
+        {
+            _currentSourceNode.ActivateNodeAsSource(true);
+
+        }
+
         foreach (var neighbor in _currentSourceNode.ProvideListOfNeighbors())
         {
             neighbor.SetNodeAsSelectable();
@@ -201,6 +212,7 @@ public class NodeController : MonoBehaviour
 
     private void HandleSuccessfulDelivery()
     {
+        PacketDelivered?.Invoke();
         SoundController.Instance.PlayRandomCompletion();
         CreateSourceTargetPair();
     }
