@@ -29,18 +29,18 @@ public class NewLinkHandler : MonoBehaviour
         if (brokenNode == _nh) return;
         if (_neighbors.Contains(brokenNode))
         {
-            Debug.Log($"{name} is affected by broken node");
+            Debug.Log($"{name} is affected by node break of {brokenNode}");
             ConnectWithWorkingNeighborNodes();
         }
     }
 
     public void ConnectWithWorkingNeighborNodes()
     {
-        if (_nh.IsBroken) return;
-
         DestroyExistingLinks();
         _links.Clear();
         _neighbors.Clear();
+
+        if (_nh.IsBroken) return;
         float dist = 0;
         foreach (var node in NodeController.Instance.WorkingNodes)
         {
@@ -57,7 +57,7 @@ public class NewLinkHandler : MonoBehaviour
 
     private void DestroyExistingLinks()
     {
-        for (int i = _links.Count - 1; i > 0; i--)
+        for (int i = _links.Count - 1; i >= 0; i--)
         {
             Destroy(_links[i].gameObject);
         }

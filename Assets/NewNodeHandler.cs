@@ -130,7 +130,9 @@ public class NewNodeHandler : MonoBehaviour
 
         if (_currentLoad > _baseTier)
         {
+            Debug.Log($"{name} just broke");
             _isBroken = true;
+
             _nr.SetBase(_baseTier, ColorController.Instance.BrokenNode);
         }
         else
@@ -139,7 +141,7 @@ public class NewNodeHandler : MonoBehaviour
         }
 
         _lh.DeselectAllLinks();
-        SetNodeAsUnselectable();
+        //SetNodeAsUnselectable();
         _ps.Play();
         _lh.ActivateLink(NodeController.Instance.PreviousSourceNode);
 
@@ -174,7 +176,7 @@ public class NewNodeHandler : MonoBehaviour
 
     public void ActivateNodeAsWarm()
     {
-        SetNodeAsUnselectable();
+        //SetNodeAsUnselectable();
         _ps.Stop();
         if (_isBroken)
         {
@@ -200,7 +202,7 @@ public class NewNodeHandler : MonoBehaviour
         else
         {
             _isWarm = false;
-            SetNodeAsUnselectable();
+            //SetNodeAsUnselectable();
             _nr.SetBase(_baseTier, ColorController.Instance.ColdNode);
             _lh.DeactivateAllLinks();
         }
