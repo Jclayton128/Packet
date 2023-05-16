@@ -116,11 +116,11 @@ public class NewLinkHandler : MonoBehaviour
         }
     }
 
-    public void FadeInAllLinks()
+    public void FadeInAllLinks(float duration)
     {
         foreach (var link in _links)
         {
-            link.FadeInLink();
+            link.FadeInLink(duration);
         }
     }
 

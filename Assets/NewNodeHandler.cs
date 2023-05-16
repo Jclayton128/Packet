@@ -50,18 +50,19 @@ public class NewNodeHandler : MonoBehaviour
         _isWarm = false;
         _isBroken = false;
         _nr.SetBase(_baseTier, ColorController.Instance.ColdClear);
-        _nr.SetLoadDots(_baseTier, _currentLoad, ColorController.Instance.UnloadedClear);
+        //_nr.SetLoadDots(_baseTier, _currentLoad, ColorController.Instance.UnloadedClear);
         _nr.HideSelectionRing();
         _lh.ConnectWithWorkingNeighborNodes();
         //_lh.DeselectAllLinks();
-        Invoke(nameof(MasterFadeIn),1f);
+        //Invoke(nameof(MasterFadeIn),1f);
+        MasterFadeIn();
 
     }
 
     public void MasterFadeIn()
     {
-        _nr.FadeIn(1f);
-        _lh.FadeInAllLinks();
+        _nr.FadeIn(2f);
+        _lh.FadeInAllLinks(2f);
     }
 
     public void MasterFadeOut()

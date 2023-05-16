@@ -67,34 +67,32 @@ public class NewNodeRenderer : MonoBehaviour, IFadeable
     [ContextMenu("Fade in")]
     public void FadeIn(float fadeDuration)
     {
+        float rand = UnityEngine.Random.Range(0, 1.5f);
         _fadeTween_3.Kill();
         _fadeTween_4.Kill();
         _fadeTween_5.Kill();
         _fadeTween_6.Kill();
-        _fadeTween_3 = _base_3.DOFade(1, fadeDuration);
-        _fadeTween_4 = _base_4.DOFade(1, fadeDuration);
-        _fadeTween_5 = _base_5.DOFade(1, fadeDuration);
-        _fadeTween_6 = _base_6.DOFade(1, fadeDuration);
+        _fadeTween_3 = _base_3.DOFade(1, fadeDuration).SetDelay(rand);
+        _fadeTween_4 = _base_4.DOFade(1, fadeDuration).SetDelay(rand);
+        _fadeTween_5 = _base_5.DOFade(1, fadeDuration).SetDelay(rand);
+        _fadeTween_6 = _base_6.DOFade(1, fadeDuration).SetDelay(rand);
 
         foreach (var dot in _load_3)
         {
-            dot.DOFade(1, fadeDuration);
+            dot.DOFade(1, fadeDuration).SetDelay(rand);
         }
         foreach (var dot in _load_4)
         {
-            dot.DOFade(1, fadeDuration);
+            dot.DOFade(1, fadeDuration).SetDelay(rand);
         }
         foreach (var dot in _load_5)
         {
-            dot.DOFade(1, fadeDuration);
+            dot.DOFade(1, fadeDuration).SetDelay(rand);
         }
         foreach (var dot in _load_6)
         {
-            dot.DOFade(1, fadeDuration);
+            dot.DOFade(1, fadeDuration).SetDelay(rand);
         }
-
-
-
     }
 
     [ContextMenu("Fade out")]

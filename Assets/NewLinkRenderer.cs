@@ -21,10 +21,19 @@ public class NewLinkRenderer : MonoBehaviour
         _lr = GetComponent<LineRenderer>();
     }
 
-    public void FadeInLink()
+    public void FadeInLink(float duration)
     {
+        float rand = UnityEngine.Random.Range(0, 1.5f);
+        //DeselectPossibleLink();
+
         //Tween this later
-        DeselectPossibleLink();
+        Color clear = ColorController.Instance.ColdClear;
+        clear.a = 0;
+        Color2 clear2 = new Color2(clear, clear);
+
+        Color cold = ColorController.Instance.ColdLink;
+        Color2 cold2 = new Color2(cold, cold);
+        _lr.DOColor(clear2, cold2, duration).SetDelay(rand);
     }
 
     public void FadeOutLink()

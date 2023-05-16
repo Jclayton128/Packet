@@ -61,7 +61,7 @@ public class NodeController : MonoBehaviour
         {
             node.Initialize();
         }
-        CreateSourceTargetPair();
+        //CreateSourceTargetPair();
     }
 
     public void ProcessBrokenNode(NewNodeHandler brokenNode)

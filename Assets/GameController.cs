@@ -28,9 +28,6 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
 
-
-
-
     public void ToggleTutorialMode()
     {
         _isTutorialMode = !_isTutorialMode;
@@ -50,15 +47,20 @@ public class GameController : MonoBehaviour
     {
         IsRevisedMode = true;
         Camera.main.transform.position = _revisedWorldPosition;
-        Invoke(nameof(StartGame_Revised_Delay), 2f);
+        Invoke(nameof(StartGame_Revised_Delay_1), 2f);
     }
 
-    private void StartGame_Revised_Delay()
+    private void StartGame_Revised_Delay_1()
     {
         RevisedGameStart?.Invoke();
+        Invoke(nameof(StartGame_Revised_Delay_2), 2f);
+    }
+    private void StartGame_Revised_Delay_2()
+    {
+        NodeController.Instance.CreateSourceTargetPair();
     }
 
-    
+
     public void StartGame()
     {
         _isGameOver = false;
